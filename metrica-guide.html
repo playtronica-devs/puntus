@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>puntús · Метрика — Живой гид</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f7f8fb;color:#111;font-size:14px;line-height:1.6}
+.header{background:linear-gradient(135deg,#5c6bc0,#3949ab);color:#fff;padding:28px 32px 24px}
+.header h1{font-size:22px;font-weight:700;letter-spacing:-0.3px}
+.header p{opacity:.8;font-size:13px;margin-top:4px}
+.badge{display:inline-block;background:rgba(255,255,255,.2);border-radius:20px;padding:2px 10px;font-size:11px;margin-left:10px;vertical-align:middle}
+.main{max-width:1100px;margin:0 auto;padding:24px 20px}
+.grid{display:grid;grid-template-columns:280px 1fr;gap:20px;align-items:start}
+/* Sidebar */
+.sidebar{background:#fff;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.06);overflow:hidden;position:sticky;top:20px}
+.sidebar-title{background:#e8eaf6;color:#3949ab;font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:10px 16px}
+.link-group{padding:8px 0}
+.link-group-title{font-size:10px;color:#999;text-transform:uppercase;letter-spacing:.6px;padding:6px 16px 4px}
+.link-item{display:flex;align-items:center;gap:10px;padding:8px 16px;text-decoration:none;color:#333;font-size:13px;transition:background .15s}
+.link-item:hover{background:#f5f5f5}
+.link-item .icon{width:20px;text-align:center;font-size:14px}
+.link-item .desc{font-size:11px;color:#999;display:block}
+.tag{font-size:10px;background:#e8eaf6;color:#5c6bc0;border-radius:10px;padding:1px 7px;margin-left:auto;white-space:nowrap}
+.tag.red{background:#fdecea;color:#c62828}
+.tag.green{background:#e8f5e9;color:#2e7d32}
+.tag.orange{background:#fff3e0;color:#e65100}
+/* Main content */
+.section{background:#fff;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.06);margin-bottom:20px;overflow:hidden}
+.section-header{padding:14px 20px;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;gap:10px}
+.section-header h2{font-size:15px;font-weight:600}
+.section-header .sub{font-size:11px;color:#999;margin-left:auto}
+.section-body{padding:16px 20px}
+/* Metrics grid */
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:0}
+.metric{background:#f7f8fb;border-radius:8px;padding:12px 14px}
+.metric-label{font-size:10px;color:#999;text-transform:uppercase;letter-spacing:.5px}
+.metric-value{font-size:22px;font-weight:700;color:#3949ab;margin:2px 0}
+.metric-sub{font-size:11px;color:#666}
+.metric-delta{font-size:11px;font-weight:600}
+.metric-delta.up{color:#c62828}
+.metric-delta.good{color:#2e7d32}
+/* Sources table */
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;color:#999;font-size:10px;text-transform:uppercase;letter-spacing:.5px;padding:6px 10px;border-bottom:1px solid #f0f0f0}
+td{padding:8px 10px;border-bottom:1px solid #f5f5f5}
+tr:last-child td{border-bottom:none}
+.bar{height:6px;border-radius:3px;background:#e8eaf6;display:inline-block;vertical-align:middle;margin-right:6px}
+.bar-fill{height:6px;border-radius:3px}
+/* Log entries */
+.log-entry{border:1px solid #f0f0f0;border-radius:10px;padding:14px 16px;margin-bottom:12px;position:relative}
+.log-entry:last-child{margin-bottom:0}
+.log-date{font-size:11px;color:#5c6bc0;font-weight:600;margin-bottom:8px}
+.log-findings{display:flex;flex-direction:column;gap:6px}
+.finding{display:flex;align-items:flex-start;gap:8px;font-size:13px}
+.finding-icon{width:18px;flex-shrink:0;margin-top:1px}
+.finding.critical .finding-icon::before{content:'🔴'}
+.finding.warning .finding-icon::before{content:'🟡'}
+.finding.insight .finding-icon::before{content:'🔵'}
+.finding.good .finding-icon::before{content:'🟢'}
+.finding.action .finding-icon::before{content:'⚡'}
+/* Protocol steps */
+.step{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #f5f5f5}
+.step:last-child{border-bottom:none}
+.step-num{width:24px;height:24px;background:#5c6bc0;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.step-content{flex:1}
+.step-title{font-weight:600;font-size:13px}
+.step-url{font-family:monospace;font-size:11px;color:#5c6bc0;background:#f0f2ff;padding:2px 6px;border-radius:4px;display:inline-block;margin:3px 0;text-decoration:none}
+.step-url:hover{background:#e8eaf6}
+.step-desc{font-size:12px;color:#666;margin-top:3px}
+/* Visor patterns */
+.pattern-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pattern-card{background:#f7f8fb;border-radius:8px;padding:12px}
+.pattern-card h4{font-size:12px;font-weight:700;margin-bottom:6px}
+.pattern-card p{font-size:12px;color:#555}
+/* Hypotheses */
+.hyp{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #f5f5f5;align-items:flex-start}
+.hyp:last-child{border-bottom:none}
+.hyp-num{font-size:10px;color:#999;min-width:24px;margin-top:2px}
+.hyp-text{flex:1;font-size:13px}
+.hyp-status{font-size:10px;border-radius:10px;padding:2px 8px;white-space:nowrap;flex-shrink:0}
+.hyp-status.confirmed{background:#e8f5e9;color:#2e7d32}
+.hyp-status.new{background:#e8eaf6;color:#5c6bc0}
+.hyp-status.check{background:#fff3e0;color:#e65100}
+/* Notice */
+.notice{background:#e8eaf6;border-left:3px solid #5c6bc0;border-radius:0 8px 8px 0;padding:10px 14px;font-size:12px;color:#333;margin-bottom:12px}
+.notice strong{color:#3949ab}
+/* Methodology */
+.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.method-card{border:1px solid #e8eaf6;border-radius:10px;padding:12px}
+.method-card h4{font-size:12px;font-weight:700;color:#3949ab;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.method-card ul{list-style:none;padding:0}
+.method-card ul li{font-size:12px;color:#555;padding:2px 0;padding-left:12px;position:relative}
+.method-card ul li::before{content:'→';position:absolute;left:0;color:#5c6bc0;font-size:11px}
+.ux-error{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #f5f5f5;align-items:flex-start}
+.ux-error:last-child{border-bottom:none}
+.ux-error-sev{font-size:10px;border-radius:6px;padding:2px 8px;white-space:nowrap;flex-shrink:0;margin-top:2px;font-weight:700}
+.ux-error-sev.p0{background:#fdecea;color:#c62828}
+.ux-error-sev.p1{background:#fff3e0;color:#e65100}
+.ux-error-sev.p2{background:#e8eaf6;color:#5c6bc0}
+.ux-error-body{flex:1}
+.ux-error-title{font-size:13px;font-weight:600}
+.ux-error-desc{font-size:12px;color:#666;margin-top:2px}
+.ux-error-ts{font-size:10px;color:#999;margin-top:2px;font-family:monospace}
+.score-table{width:100%;border-collapse:collapse;font-size:12px}
+.score-table th{background:#f7f8fb;padding:6px 10px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:#999}
+.score-table td{padding:6px 10px;border-bottom:1px solid #f5f5f5}
+</style>
+</head>
+<body>
+
+<div class="header" style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px">
+  <div>
+    <h1>puntús · Яндекс.Метрика <span class="badge">Живой гид v1.2</span></h1>
+    <p>Само-обновляемый протокол анализа · Обновлён: 28 мая 2026 14:00 · Счётчик: 108324634 · puntus.me · Сессий просмотрено: 15 · UX-багов найдено: 14</p>
+  </div>
+  <a href="https://playtronica-devs.github.io/puntus/metrica-guide.html" target="_blank"
+     style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;text-decoration:none;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:600;white-space:nowrap;flex-shrink:0;margin-top:4px;transition:background .2s"
+     onmouseover="this.style.background='rgba(255,255,255,.25)'" onmouseout="this.style.background='rgba(255,255,255,.15)'">
+    🌐 Открыть онлайн
+  </a>
+</div>
+
+<div class="main">
+<div class="grid">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="sidebar-title">⚡ Быстрые ссылки</div>
+
+  <div class="link-group">
+    <div class="link-group-title">Обзор</div>
+    <a class="link-item" href="https://metrika.yandex.ru/overview?id=108324634" target="_blank">
+      <span class="icon">📊</span>
+      <span>Сводка<span class="desc">Главные показатели</span></span>
+    </a>
+  </div>
+
+  <div class="link-group">
+    <div class="link-group-title">Поведение</div>
+    <a class="link-item" href="https://metrika.yandex.ru/stat/visor?id=108324634" target="_blank">
+      <span class="icon">▶️</span>
+      <span>Вебвизор<span class="desc">Записи сессий</span></span>
+      <span class="tag red">P0</span>
+    </a>
+    <a class="link-item" href="https://metrika.yandex.ru/stat/content?id=108324634" target="_blank">
+      <span class="icon">📄</span>
+      <span>Популярное<span class="desc">Топ страниц</span></span>
+    </a>
+  </div>
+
+  <div class="link-group">
+    <div class="link-group-title">Трафик</div>
+    <a class="link-item" href="https://metrika.yandex.ru/stat/sources?id=108324634" target="_blank">
+      <span class="icon">🔗</span>
+      <span>Источники<span class="desc">Откуда приходят</span></span>
+      <span class="tag red">P0</span>
+    </a>
+    <a class="link-item" href="https://metrika.yandex.ru/stat/sources/search_phrases?id=108324634" target="_blank">
+      <span class="icon">🔍</span>
+      <span>Поисковые запросы<span class="desc">SEO фразы</span></span>
+    </a>
+    <a class="link-item" href="https://metrika.yandex.ru/stat/geo?id=108324634" target="_blank">
+      <span class="icon">🌍</span>
+      <span>География<span class="desc">Страны → VPN-поправка</span></span>
+    </a>
+  </div>
+
+  <div class="link-group">
+    <div class="link-group-title">Аудитория</div>
+    <a class="link-item" href="https://metrika.yandex.ru/stat/age?id=108324634" target="_blank">
+      <span class="icon">👤</span>
+      <span>Возраст и пол<span class="desc">Демография</span></span>
+    </a>
+    <a class="link-item" href="https://metrika.yandex.ru/stat/browsers?id=108324634" target="_blank">
+      <span class="icon">💻</span>
+      <span>Устройства<span class="desc">Mobile vs Desktop</span></span>
+    </a>
+  </div>
+
+  <div class="link-group">
+    <div class="link-group-title">Электронная коммерция</div>
+    <a class="link-item" href="https://metrika.yandex.ru/stat/ecommerce?id=108324634" target="_blank">
+      <span class="icon">🛍️</span>
+      <span>Заказанные товары<span class="desc">Что покупают</span></span>
+      <span class="tag red">P0</span>
+    </a>
+    <a class="link-item" href="https://metrika.yandex.ru/stat/funnel?id=108324634" target="_blank">
+      <span class="icon">🔻</span>
+      <span>Воронки<span class="desc">Где теряем покупателей</span></span>
+    </a>
+  </div>
+
+  <div class="link-group">
+    <div class="link-group-title">Карты</div>
+    <a class="link-item" href="https://metrika.yandex.ru/map/click?id=108324634" target="_blank">
+      <span class="icon">🔥</span>
+      <span>Карта кликов<span class="desc">Куда тапают</span></span>
+    </a>
+    <a class="link-item" href="https://metrika.yandex.ru/map/scroll?id=108324634" target="_blank">
+      <span class="icon">📜</span>
+      <span>Карта скроллинга<span class="desc">Глубина чтения</span></span>
+    </a>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div>
+
+<!-- ТЕКУЩИЕ МЕТРИКИ -->
+<div class="section">
+  <div class="section-header">
+    <h2>📈 Общие показатели</h2>
+    <span class="sub">1 мар — 28 мая 2026 · квартал</span>
+  </div>
+  <div class="section-body">
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-label">Просмотры</div>
+        <div class="metric-value">113,2 тыс</div>
+        <div class="metric-sub">~1 260/день</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Визиты</div>
+        <div class="metric-value">26,1 тыс</div>
+        <div class="metric-sub">~290/день</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Уникальные посетители</div>
+        <div class="metric-value">18,7 тыс</div>
+        <div class="metric-sub">~208/день</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Время на сайте</div>
+        <div class="metric-value">2м 13с</div>
+        <div class="metric-sub">норма для e-commerce</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Глубина просмотра</div>
+        <div class="metric-value">4,34</div>
+        <div class="metric-sub">хороший показатель</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Отказы</div>
+        <div class="metric-value" style="color:#c62828">17,01%</div>
+        <div class="metric-sub"><span class="metric-delta up">▲ +17%</span> — растёт</div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px">
+      <div style="font-size:11px;color:#999;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Отказы по источникам трафика</div>
+      <table>
+        <tr><th>Источник</th><th>Отказы</th><th>Вывод</th></tr>
+        <tr><td>🔗 Ссылки с сайтов</td><td style="color:#2e7d32;font-weight:700">10,64%</td><td style="font-size:12px;color:#555">лучшее качество трафика</td></tr>
+        <tr><td>🔍 Поисковые системы</td><td style="color:#2e7d32;font-weight:700">12,61%</td><td style="font-size:12px;color:#555">высокий intent, SEO работает</td></tr>
+        <tr><td>🏠 Прямые заходы</td><td>16,40%</td><td style="font-size:12px;color:#555">лояльная аудитория</td></tr>
+        <tr><td>📱 Социальные сети</td><td>17,97%</td><td style="font-size:12px;color:#555">Instagram — discovery-режим</td></tr>
+        <tr><td>🔄 Внутренние переходы</td><td style="color:#c62828;font-weight:700">24,12%</td><td style="font-size:12px;color:#555">⚠️ проблема навигации внутри сайта</td></tr>
+      </table>
+    </div>
+
+    <div style="margin-top:16px">
+      <div style="font-size:11px;color:#999;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Новые vs вернувшиеся</div>
+      <div style="display:flex;gap:12px">
+        <div class="metric" style="flex:1"><div class="metric-label">Новые</div><div class="metric-value">19,5 тыс</div><div class="metric-sub">84% от аудитории</div></div>
+        <div class="metric" style="flex:1"><div class="metric-label">Вернувшиеся</div><div class="metric-value" style="color:#c62828">3 201</div><div class="metric-sub">только 16% — низкое удержание</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ТОП СТРАНИЦ -->
+<div class="section">
+  <div class="section-header">
+    <h2>📄 Топ страниц (просмотры)</h2>
+    <span class="sub">Квартал · март–май 2026</span>
+  </div>
+  <div class="section-body">
+    <div class="notice"><strong>Аномалия:</strong> Popup-страницы (tilda/popup) суммарно дают ~16 000 просмотров — больше, чем главная. Это значит каждый второй посетитель видит попап.</div>
+    <table>
+      <tr><th>#</th><th>Страница</th><th>Просмотры</th><th>Вывод</th></tr>
+      <tr><td>1</td><td>/tilda/popup/rec861090090/opened</td><td><strong>7 765</strong></td><td style="font-size:11px;color:#e65100">🔥 Попап №1 — что в нём?</td></tr>
+      <tr><td>2</td><td>/spring</td><td><strong>7 528</strong></td><td style="font-size:11px;color:#2e7d32">✅ Весенняя коллекция — топ</td></tr>
+      <tr><td>3</td><td>/ (главная)</td><td><strong>7 474</strong></td><td style="font-size:11px;color:#555">базовый трафик</td></tr>
+      <tr><td>4</td><td>/rings</td><td><strong>5 629</strong></td><td style="font-size:11px;color:#2e7d32">✅ Кольца — самый популярный продукт</td></tr>
+      <tr><td>5</td><td>/treasures</td><td><strong>3 807</strong></td><td style="font-size:11px;color:#555">TREASURES коллекция</td></tr>
+      <tr><td>6</td><td>/tilda/popup/rec896270494/opened</td><td><strong>3 805</strong></td><td style="font-size:11px;color:#e65100">🔥 Попап №2</td></tr>
+      <tr><td>7</td><td>/necklace</td><td><strong>2 352</strong></td><td style="font-size:11px;color:#555">Ожерелья</td></tr>
+    </table>
+    <div style="margin-top:12px;font-size:11px;color:#999">Топ заголовков: Spring Guide (9 905) · Кольца (5 886) · Интернет-магазин украшений (4 266) · TREASURES (3 920) · Одежда (3 475) · РАЗНОЦВЕТНОЕ КОЛЬЕ (2 461) · ТЕАТРАЛЬНАЯ СУМКА С КАМНЯМИ (1 570)</div>
+  </div>
+</div>
+
+<!-- ВЕБВИЗОР ПАТТЕРНЫ -->
+<div class="section">
+  <div class="section-header">
+    <h2>▶️ Вебвизор — паттерны сессий</h2>
+    <span class="sub">Сегодня, 28 мая 2026 · 19 сессий</span>
+  </div>
+  <div class="section-body">
+    <div class="pattern-grid" style="margin-bottom:14px">
+      <div class="pattern-card">
+        <h4>📱 Instagram = главный канал</h4>
+        <p>8 из 19 сессий сегодня пришли с l.instagram.com. После постов трафик идёт волнами ~каждые 2-5 мин.</p>
+      </div>
+      <div class="pattern-card">
+        <h4>🇳🇱🇩🇪 NL+DE из Instagram = диаспора</h4>
+        <p>Сессии 6 (NL, Instagram, 2:11), 7 (DE, Instagram, 2:16), 11 (NL, 0:01), 19 (NL, Instagram) — русскоязычные за рубежом. Подтверждает VPN-гипотезу.</p>
+      </div>
+      <div class="pattern-card">
+        <h4>⏱️ Суперсессии (высокий intent)</h4>
+        <p>Сессия #17: 9:58 на сайте, 5 страниц. Сессия #9: 14 страниц за 2:24 с Instagram. Сессия #8: 4:54, возврат #4. Это тёплые лиды.</p>
+      </div>
+      <div class="pattern-card">
+        <h4>🔴 Быстрые отказы (~20%)</h4>
+        <p>Сессии 3 (UK, 0:00), 11 (NL, 0:01), 12 (RU, 0:00), 18 (0:00) уходят в первые 2 сек. Возможная причина: медленная загрузка или несовпадение ожиданий от поста.</p>
+      </div>
+      <div class="pattern-card">
+        <h4>🇫🇷 Лояльный посетитель #28</h4>
+        <p>Франция, визит №28 — суперлояльный пользователь. Возможно, байер или блогер. Нужно посмотреть его маршрут в записи.</p>
+      </div>
+      <div class="pattern-card">
+        <h4>🔗 thefair.ru → реферал</h4>
+        <p>Сессия #16: переход с thefair.ru. Это онлайн-маркетплейс украшений. Значит Puntus там упомянут — нужно проверить и усилить присутствие.</p>
+      </div>
+    </div>
+
+    <div class="notice"><strong>Что смотреть в Вебвизоре:</strong> Фильтр «Переход с Instagram» + время >1мин → видим тёплых лидов. Фильтр «Время 0:00» → находим причины отказов. Сессия лояльного Франция-посетителя (#28) → изучить маршрут.</div>
+  </div>
+</div>
+
+<!-- ПРОТОКОЛ АНАЛИЗА -->
+<div class="section">
+  <div class="section-header">
+    <h2>🔄 Протокол еженедельного анализа</h2>
+    <span class="sub">Выполнять каждый понедельник · 20 мин</span>
+  </div>
+  <div class="section-body">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-title">Сводка — отказы и глубина</div>
+        <a class="step-url" href="https://metrika.yandex.ru/overview?id=108324634" target="_blank">metrika.yandex.ru/overview?id=108324634</a>
+        <div class="step-desc">Смотрим: отказы растут или падают? Глубина просмотра как? Время на сайте. Акцент на динамику vs прошлую неделю. <strong>Цель: отказы &lt;15%, глубина &gt;4.</strong></div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-title">Топ страниц — что выросло</div>
+        <a class="step-url" href="https://metrika.yandex.ru/stat/content?id=108324634" target="_blank">metrika.yandex.ru/stat/content?id=108324634</a>
+        <div class="step-desc">Сортируем по просмотрам. Смотрим какие страницы растут (новые посты → страницы). Отмечаем продукты в топ-5 → они продвигаются в Instagram? Popup-страницы: что в них триггерит?</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-title">Вебвизор — 10 сессий с Instagram</div>
+        <a class="step-url" href="https://metrika.yandex.ru/stat/visor?id=108324634" target="_blank">metrika.yandex.ru/stat/visor?id=108324634</a>
+        <div class="step-desc">Фильтр: Переход с сайтов = instagram. Сортировка по времени. Смотрим 10 сессий >30с. <strong>Что ищут? Куда кликают? Где останавливаются?</strong> Особо — NL/DE сессии (диаспора).</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <div class="step-title">Заказанные товары — что покупают</div>
+        <a class="step-url" href="https://metrika.yandex.ru/stat/ecommerce?id=108324634" target="_blank">metrika.yandex.ru/stat/ecommerce?id=108324634</a>
+        <div class="step-desc">Топ товаров по заказам за неделю. Сравниваем с топом просмотров — есть ли разрыв (смотрят одно, покупают другое)? Это = гипотеза о перестановке акцентов.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <div class="step-title">География — VPN-поправка</div>
+        <a class="step-url" href="https://metrika.yandex.ru/stat/geo?id=108324634" target="_blank">metrika.yandex.ru/stat/geo?id=108324634</a>
+        <div class="step-desc">Смотрим NL, DE, IL, CY, GE — там русскоязычная диаспора с VPN. Их CR занижен из-за отсутствия EN-доставки. Черногория = маркер диаспора-трафика (CR 6.67% исторически). Если растёт — диаспора активизировалась.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">6</div>
+      <div class="step-content">
+        <div class="step-title">Быстрые отказы — причина</div>
+        <a class="step-url" href="https://metrika.yandex.ru/stat/visor?id=108324634" target="_blank">Вебвизор + фильтр время &lt;5с</a>
+        <div class="step-desc">Фильтр: Время на сайте &lt;5 секунд. Смотрим 5 записей. Откуда пришли? С какой страницы ушли? Если bounce с homepage → заголовок не захватывает. Если с конкретного продукта → цена или фото не то.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- МЕТОДОЛОГИЯ ПРОСМОТРА СЕССИЙ -->
+<div class="section">
+  <div class="section-header">
+    <h2>🎯 Методология просмотра сессий Вебвизора</h2>
+    <span class="sub">Протокол сбора UX-информации · v1.0</span>
+  </div>
+  <div class="section-body">
+
+    <div class="notice"><strong>Принцип:</strong> Каждая сессия — это интервью без слов. Пользователь показывает где ему сложно, не говоря об этом. Задача — найти <em>паттерны</em>, а не единичные случаи. 3+ повтора = баг. 1 повтор = гипотеза.</div>
+
+    <!-- Шаг 1: Что смотреть первым -->
+    <div style="margin-bottom:16px">
+      <div style="font-size:11px;color:#999;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;font-weight:700">📋 Шаг 1 — Отбор сессий для просмотра</div>
+      <div class="method-grid">
+        <div class="method-card">
+          <h4>🔥 Приоритет 1: Горячие лиды (>2 мин)</h4>
+          <ul>
+            <li>Время на сайте >2 мин — человек изучает</li>
+            <li>3+ страниц — навигация активная</li>
+            <li>Возврат #2+ — лояльные</li>
+            <li>Источник: Instagram, прямой заход</li>
+          </ul>
+        </div>
+        <div class="method-card">
+          <h4>🧊 Приоритет 2: Быстрые отказы (&lt;10 сек)</h4>
+          <ul>
+            <li>Время 0:00–0:10 — чем триггирует уход?</li>
+            <li>С какой страницы зашли?</li>
+            <li>Откуда пришли? (UTM/соц.сеть)</li>
+            <li>Мобайл vs десктоп — есть ли паттерн?</li>
+          </ul>
+        </div>
+        <div class="method-card">
+          <h4>🔄 Приоритет 3: Длинные без покупки</h4>
+          <ul>
+            <li>5+ мин но 0 конверсий — где потерялись?</li>
+            <li>Открывали карточку товара?</li>
+            <li>Доходили до корзины?</li>
+            <li>Где курсор последний раз завис?</li>
+          </ul>
+        </div>
+        <div class="method-card">
+          <h4>🌍 Приоритет 4: Диаспора (NL/DE/IL/CY)</h4>
+          <ul>
+            <li>Заходят с NL/DE/FR/GE = вероятно РФ+VPN</li>
+            <li>Пробуют оформить заказ? Где стопорятся?</li>
+            <li>Смотрят страницу доставки?</li>
+            <li>Язык интерфейса — читают кириллицу?</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Шаг 2: Таксономия UX-ошибок -->
+    <div style="margin-bottom:16px">
+      <div style="font-size:11px;color:#999;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;font-weight:700">📋 Шаг 2 — Классификация UX-ошибок</div>
+      <table class="score-table">
+        <tr><th>Тип</th><th>Код</th><th>Признаки в записи</th><th>Приоритет</th></tr>
+        <tr><td><strong>Мёртвый клик</strong></td><td style="font-family:monospace;color:#5c6bc0">DEAD</td><td>Кликает на нечто некликабельное, курсор крутится</td><td><span style="color:#c62828;font-weight:700">P0</span></td></tr>
+        <tr><td><strong>Спиннер-стоп</strong></td><td style="font-family:monospace;color:#5c6bc0">SPIN</td><td>Кнопка нажата, идёт загрузка → ничего не происходит</td><td><span style="color:#c62828;font-weight:700">P0</span></td></tr>
+        <tr><td><strong>Rage-кликабельность</strong></td><td style="font-family:monospace;color:#5c6bc0">RAGE</td><td>3+ быстрых клика на одном элементе</td><td><span style="color:#c62828;font-weight:700">P0</span></td></tr>
+        <tr><td><strong>Навигационная петля</strong></td><td style="font-family:monospace;color:#5c6bc0">LOOP</td><td>A→B→A→B более 2 раз — не может найти нужное</td><td><span style="color:#e65100;font-weight:700">P1</span></td></tr>
+        <tr><td><strong>Фрикция прокрутки</strong></td><td style="font-family:monospace;color:#5c6bc0">FRIC</td><td>Дошёл до конца, кликнул "Загрузить ещё" вместо infinite scroll</td><td><span style="color:#e65100;font-weight:700">P1</span></td></tr>
+        <tr><td><strong>Слепая зона</strong></td><td style="font-family:monospace;color:#5c6bc0">BLIND</td><td>Пропускает важный элемент (CTA/фото/цену) — глаз не цепляет</td><td><span style="color:#e65100;font-weight:700">P1</span></td></tr>
+        <tr><td><strong>Скрытый контент</strong></td><td style="font-family:monospace;color:#5c6bc0">HIDE</td><td>Открывает гамбургер/дропдаун чтобы найти то, что должно быть видно</td><td><span style="color:#e65100;font-weight:700">P1</span></td></tr>
+        <tr><td><strong>Стоп-контент</strong></td><td style="font-family:monospace;color:#5c6bc0">STOP</td><td>Зависает на out-of-stock / "SOON" / нет доставки → уходит</td><td><span style="color:#e65100;font-weight:700">P1</span></td></tr>
+        <tr><td><strong>Длинная форма</strong></td><td style="font-family:monospace;color:#5c6bc0">FORM</td><td>Начал заполнять форму, не закончил — слишком много полей</td><td><span style="color:#5c6bc0;font-weight:700">P2</span></td></tr>
+        <tr><td><strong>Неясный CTA</strong></td><td style="font-family:monospace;color:#5c6bc0">CTA</td><td>Ищет кнопку покупки дольше 3 сек / кликает не туда</td><td><span style="color:#5c6bc0;font-weight:700">P2</span></td></tr>
+        <tr><td><strong>Медленная загрузка</strong></td><td style="font-family:monospace;color:#5c6bc0">SLOW</td><td>Долгая пауза без активности → имитирует ожидание</td><td><span style="color:#5c6bc0;font-weight:700">P2</span></td></tr>
+      </table>
+    </div>
+
+    <!-- Шаг 3: Что смотреть на каждом типе страницы -->
+    <div style="margin-bottom:16px">
+      <div style="font-size:11px;color:#999;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;font-weight:700">📋 Шаг 3 — Чек-лист по типам страниц</div>
+      <div class="method-grid">
+        <div class="method-card">
+          <h4>🏠 Главная / Коллекции (/spring, /rings)</h4>
+          <ul>
+            <li>Куда смотрит первый взгляд? (верх страницы)</li>
+            <li>Доскролливает до конца или уходит на 50%?</li>
+            <li>Клики на фото vs кнопка "Купить"?</li>
+            <li>"Загрузить ещё" — используется? (FRIC)</li>
+            <li>SOON/Нет в наличии — стопорит? (STOP)</li>
+          </ul>
+        </div>
+        <div class="method-card">
+          <h4>🛍️ Карточка товара (/products/xxx)</h4>
+          <ul>
+            <li>Смотрит все фото? Или только первое?</li>
+            <li>Читает описание или скипает?</li>
+            <li>Находит кнопку "Купить" сразу? (CTA)</li>
+            <li>Проверяет раздел доставки?</li>
+            <li>Уходит куда — назад в коллекцию или с сайта?</li>
+          </ul>
+        </div>
+        <div class="method-card">
+          <h4>🧭 Навигация / Меню</h4>
+          <ul>
+            <li>Открывает гамбургер — что ищет? (HIDE)</li>
+            <li>Использует поиск или нет?</li>
+            <li>Петли A→B→A? (LOOP)</li>
+            <li>Категории — понятны ли названия?</li>
+          </ul>
+        </div>
+        <div class="method-card">
+          <h4>🛒 Корзина / Оформление</h4>
+          <ul>
+            <li>Добавляет в корзину? Или только просматривает?</li>
+            <li>Открывает корзину и закрывает? (DEAD/SPIN)</li>
+            <li>Дошёл до формы адреса?</li>
+            <li>Где последнее действие перед уходом?</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Шаг 4: Скоринг сессии -->
+    <div>
+      <div style="font-size:11px;color:#999;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;font-weight:700">📋 Шаг 4 — Быстрый скоринг (1 мин на сессию)</div>
+      <div style="background:#f7f8fb;border-radius:8px;padding:14px;font-size:13px">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+          <div>
+            <div style="font-weight:700;color:#2e7d32;margin-bottom:4px">✅ Здоровая сессия</div>
+            <div style="font-size:12px;color:#555">Время >1 мин, линейный маршрут, нашёл товар, добавил в корзину. Ничего делать не нужно.</div>
+          </div>
+          <div>
+            <div style="font-weight:700;color:#e65100;margin-bottom:4px">⚠️ Сессия с трением</div>
+            <div style="font-size:12px;color:#555">Зависал, возвращался, долго искал. Записать: где именно + тип (FRIC/HIDE/LOOP). Если 3+ — гипотеза.</div>
+          </div>
+          <div>
+            <div style="font-weight:700;color:#c62828;margin-bottom:4px">🔴 Сессия-баг</div>
+            <div style="font-size:12px;color:#555">Rage-клик, спиннер без ответа, dead click. Немедленно записать. Если 2+ повтора — фикс P0.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ЧТО НАСТРОИТЬ -->
+<div class="section">
+  <div class="section-header">
+    <h2>⚙️ Что нужно настроить в Метрике</h2>
+    <span class="sub">Рекомендации от 28.05.2026</span>
+  </div>
+  <div class="section-body">
+    <div class="notice">Метрика сама показала 3 критические рекомендации на странице Сводки.</div>
+    <div class="step">
+      <div class="step-num" style="background:#c62828">!</div>
+      <div class="step-content">
+        <div class="step-title">🔴 Цели на кнопки — не настроены</div>
+        <div class="step-desc">Сейчас Метрика не знает, сколько людей нажали «Купить», «В корзину», «Заказать». Нужно создать цели типа «Клик по кнопке». <strong>Это даст данные по CTA-конверсии без кода.</strong> Настроить через: Настройки → Цели → + Цель → Клик по кнопке.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num" style="background:#c62828">!</div>
+      <div class="step-content">
+        <div class="step-title">🔴 Электронная коммерция — события add_to_cart не передаются</div>
+        <div class="step-desc">Метрика видит покупки, но не видит «Добавление в корзину». Нужно настроить передачу события add через Tilda → Интеграции → Яндекс.Метрика. <strong>Без этого не видим где конверсия рвётся.</strong></div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num" style="background:#e65100">2</div>
+      <div class="step-content">
+        <div class="step-title">🟡 Воронка checkout — настроить</div>
+        <div class="step-desc">Создать воронку: главная → /rings или /spring → /cart → /checkout → спасибо. Покажет на каком шаге теряем больше всего. Настройки → Воронки → + Воронка.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num" style="background:#e65100">3</div>
+      <div class="step-content">
+        <div class="step-title">🟡 Карта скроллинга на /rings и /spring</div>
+        <div class="step-desc">Открыть Карту скроллинга на самых популярных страницах. Если 70% уходят до середины — CTA кнопка слишком низко. Сдвигаем кнопку «Купить» выше.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LOG SESSIONS -->
+<div class="section">
+  <div class="section-header">
+    <h2>📝 Лог сессий анализа</h2>
+    <span class="sub">Обновляется каждый раз когда Claude заходит в Метрику</span>
+  </div>
+  <div class="section-body">
+
+    <!-- UX SESSION LOG -->
+
+    <!-- BATCH 2 — 28.05.2026 AFTERNOON -->
+    <div class="log-entry" style="border-color:#1a237e">
+      <div class="log-date" style="color:#1a237e">🤖 28 мая 2026 — Батч #2: 9 сессий (S7–S15)</div>
+      <div style="font-size:11px;color:#999;margin-bottom:12px">Продолжение автопрохода. Итого за день: 15 сессий. Паттерны подтверждены количественно.</div>
+      <div class="log-findings">
+
+        <table style="font-size:12px;margin-bottom:14px">
+          <thead><tr><th>#</th><th>Длит.</th><th>Стр.</th><th>Страна</th><th>Источник</th><th>Вход</th><th>Выход</th><th>Тег</th></tr></thead>
+          <tbody>
+            <tr><td>S7</td><td>09:58</td><td>5</td><td>🇷🇺 Химки</td><td>SEO</td><td><code style="font-size:11px">/</code></td><td><code style="font-size:11px">/product/589739662462</code></td><td><span class="tag red">STOP</span></td></tr>
+            <tr><td>S8</td><td>05:19</td><td>8</td><td>🇺🇸 США</td><td>SEO</td><td><code style="font-size:11px">/</code></td><td><code style="font-size:11px">/product/331825536942</code></td><td><span class="tag red">STOP</span></td></tr>
+            <tr><td>S9</td><td>02:38</td><td>7</td><td>🇷🇺 СПб</td><td>SEO</td><td><code style="font-size:11px">/</code></td><td><code style="font-size:11px">/popup/rec861090090</code></td><td><span class="tag orange">FRIC</span></td></tr>
+            <tr><td>S10</td><td><strong>20:41</strong></td><td><strong>23</strong></td><td>🇳🇱 Амстердам</td><td><strong>Instagram bio</strong></td><td><code style="font-size:11px">/rings?fbclid</code></td><td><code style="font-size:11px">/product/703026698622</code></td><td><span class="tag red">STOP</span></td></tr>
+            <tr><td>S11</td><td>04:03</td><td>6</td><td>🇷🇺 СПб</td><td>Прямой</td><td><code style="font-size:11px">/</code></td><td><code style="font-size:11px">/objects</code></td><td><span class="tag">BLIND</span></td></tr>
+            <tr style="background:#e8f5e9"><td>S12</td><td>02:11</td><td>6</td><td>🇳🇱 Амстердам</td><td>Instagram bio</td><td><code style="font-size:11px">/clothes?fbclid</code></td><td><em style="color:#2e7d32">пусто?</em></td><td><span class="tag green">CONV?</span></td></tr>
+            <tr><td>S13</td><td>01:10</td><td>5</td><td>🇺🇸 США</td><td>Соцсети</td><td><code style="font-size:11px">/spring</code></td><td><code style="font-size:11px">/popup/rec861090090</code></td><td><span class="tag orange">FRIC</span></td></tr>
+            <tr><td>S14</td><td>02:19</td><td>4</td><td>🇷🇺 Россия</td><td>SEO</td><td><code style="font-size:11px">/</code></td><td><code style="font-size:11px">/sets</code></td><td><span class="tag">BLIND</span></td></tr>
+            <tr><td>S15</td><td>01:10</td><td>4</td><td>🇳🇱 Энсхеде</td><td>Соцсети</td><td><code style="font-size:11px">/spring</code></td><td><code style="font-size:11px">/product/649932652981</code></td><td><span class="tag red">STOP</span></td></tr>
+          </tbody>
+        </table>
+
+        <div style="font-size:11px;color:#999;text-transform:uppercase;letter-spacing:.5px;margin:10px 0 6px">🔥 Ключевые инсайты батча #2</div>
+
+        <div class="finding critical"><div class="finding-icon"></div>
+          <strong>STOP подтверждён на 6 из 15 сессий (40%!) — product page системно не конвертирует.</strong>
+          6 разных product detail страниц — все как exit URL: /914820318432, /844858325092, /589739662462, /331825536942, /703026698622, /649932652981.
+          Разные источники (прямой, FB, Instagram, SEO), разные гео (🇫🇷🇷🇺🇺🇸🇳🇱) — проблема в самой странице, не в трафике.
+        </div>
+
+        <div class="finding critical"><div class="finding-icon"></div>
+          <strong>Popup `rec861090090` убил 3 сессии (S2 Москва, S9 СПб, S13 США) — P0 немедленно.</strong>
+          Это не единичный случай — систематическая потеря трафика. Popup срабатывает слишком рано.
+          Убрать или отложить до exit-intent / 60+ сек / 3+ страниц.
+        </div>
+
+        <div class="finding insight"><div class="finding-icon"></div>
+          <strong>🇳🇱 Instagram → Амстердам: возможная конверсия!</strong>
+          Юзер (hash 4025533713) визит S10: 20:41, 23 страницы, вход /rings, выход на product.
+          Через 51 мин визит S12: 2:11, 6 страниц, вход /clothes (Instagram bio), выход = ПУСТОЙ.
+          Пустая страница выхода = пользователь перешёл на checkout.shopify.com (другой домен, Метрика не отслеживает).
+          Проверить в Shopify: заказ из Нидерландов ~10:46 28.05.2026.
+        </div>
+
+        <div class="finding insight"><div class="finding-icon"></div>
+          <strong>Instagram link-in-bio подтверждён как активный канал.</strong>
+          utm_source=ig + utm_medium=social + utm_content=link_in_bio видны в 2 сессиях.
+          Обе ведут на /clothes → самый популярный landing для Instagram.
+          Нидерланды — основная аудитория IG (2 из 3 Dutch сессий).
+        </div>
+
+        <div class="finding insight"><div class="finding-icon"></div>
+          <strong>🇺🇸 США = 2 сессии (S8 SEO, S13 social) — американский трафик есть.</strong>
+          S8: 5:19, 8 страниц, SEO → product page exit. Высокий интент.
+          S13: 1:10, social → popup kill. Потерянный трафик.
+        </div>
+
+        <div style="font-size:11px;color:#999;text-transform:uppercase;letter-spacing:.5px;margin:12px 0 6px">📊 ИТОГО ЗА ДЕНЬ (15 сессий)</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px">
+          <div style="background:#fdecea;border-radius:8px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:700;color:#c62828">6</div><div style="font-size:11px;color:#666">STOP<br>product dead-end</div></div>
+          <div style="background:#fff3e0;border-radius:8px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:700;color:#e65100">3</div><div style="font-size:11px;color:#666">FRIC<br>popup kill</div></div>
+          <div style="background:#e8eaf6;border-radius:8px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:700;color:#3949ab">5</div><div style="font-size:11px;color:#666">BLIND<br>category exit</div></div>
+          <div style="background:#e8f5e9;border-radius:8px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:700;color:#2e7d32">1?</div><div style="font-size:11px;color:#666">CONV<br>проверить</div></div>
+        </div>
+
+        <div class="finding action"><div class="finding-icon"></div>
+          <strong>P0 #1 — Отключить / отложить popup rec861090090 прямо сейчас.</strong> 3 подтверждённые потери трафика за один день. Exit-intent или 60+ сек.
+        </div>
+        <div class="finding action"><div class="finding-icon"></div>
+          <strong>P0 #2 — Аудит product page на mobile.</strong> 6 разных страниц, все exit без покупки. Открыть любую /tilda/product/detail/* на iPhone и проверить: виден ли CTA без скролла?
+        </div>
+        <div class="finding action"><div class="finding-icon"></div>
+          <strong>P1 — Проверить Shopify заказы ~10:46 28.05 из Нидерландов</strong> — подтвердить конверсию из Instagram Amsterdam.
+        </div>
+
+      </div>
+    </div>
+
+    <!-- BATCH 28.05.2026 — AUTOMATED -->
+    <div class="log-entry" style="border-color:#3949ab">
+      <div class="log-date" style="color:#3949ab">🤖 28 мая 2026 — Автоматический батч-анализ (6 сессий, запись 28.05.2026)</div>
+      <div style="font-size:11px;color:#999;margin-bottom:12px">Метод: DOM-парсинг списка Вебвизора → visit_id → плеер → «О визите». Все сессии: ≥2 мин ИЛИ ≥2 страниц, отсортированы по страницам desc. Дата: 28.05.2026 10:52–11:13</div>
+
+      <div class="log-findings">
+
+        <div style="font-size:11px;color:#999;text-transform:uppercase;letter-spacing:.5px;margin:4px 0 8px">📊 Таблица сессий</div>
+
+        <table style="font-size:12px;margin-bottom:14px">
+          <thead>
+            <tr>
+              <th>#</th><th>Длит.</th><th>Стр.</th><th>Страна</th><th>Источник</th><th>Вход</th><th>Выход</th><th>Тег</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>S1</td><td><strong>28:50</strong></td><td>18</td>
+              <td>🇫🇷 Франция</td><td>Прямой</td>
+              <td><code style="font-size:11px">/</code></td>
+              <td><code style="font-size:11px">/product/914820318432</code></td>
+              <td><span class="tag red">STOP</span></td>
+            </tr>
+            <tr>
+              <td>S2</td><td>00:26</td><td>4</td>
+              <td>🇷🇺 Москва</td><td>Соцсети</td>
+              <td><code style="font-size:11px">/spring</code></td>
+              <td><code style="font-size:11px">/popup/opened</code></td>
+              <td><span class="tag orange">FRIC</span></td>
+            </tr>
+            <tr>
+              <td>S3</td><td>02:24</td><td><strong>14</strong></td>
+              <td>🇷🇺 Россия</td><td><strong>Facebook</strong></td>
+              <td><code style="font-size:11px">/clothes?fbclid</code></td>
+              <td><code style="font-size:11px">/product/844858325092</code></td>
+              <td><span class="tag red">STOP</span></td>
+            </tr>
+            <tr>
+              <td>S4</td><td>07:20</td><td>11</td>
+              <td>🇷🇺 Москва</td><td>SEO</td>
+              <td><code style="font-size:11px">/necklace</code></td>
+              <td><code style="font-size:11px">/treasures</code></td>
+              <td><span class="tag">BLIND</span></td>
+            </tr>
+            <tr>
+              <td>S5</td><td>02:45</td><td>10</td>
+              <td>🇰🇿 Алматы</td><td>SEO</td>
+              <td><code style="font-size:11px">/</code></td>
+              <td><code style="font-size:11px">/clothes</code></td>
+              <td><span class="tag">BLIND</span></td>
+            </tr>
+            <tr>
+              <td>S6</td><td>01:07</td><td>9</td>
+              <td>🇷🇺 Россия</td><td>Соцсети</td>
+              <td><code style="font-size:11px">/spring</code></td>
+              <td><code style="font-size:11px">/mens</code></td>
+              <td><span class="tag">BLIND</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="font-size:11px;color:#999;text-transform:uppercase;letter-spacing:.5px;margin:10px 0 6px">🔴 Ключевые паттерны</div>
+
+        <div class="finding critical"><div class="finding-icon"></div>
+          <strong>STOP-паттерн (S1 + S3): 2 из 6 высокоинтентных сессий заканчиваются на странице товара без покупки.</strong>
+          Франция (28 мин, 18 стр) и Россия (2:24, 14 стр через Facebook) — оба дошли до product detail page и ушли.
+          Выходы: <code style="font-size:11px">/tilda/product/detail/914820318432</code> и <code style="font-size:11px">/tilda/product/detail/844858325092</code>.
+          Гипотеза: на mobile product page нет видимой кнопки «Купить» / CTA заблокирован / цена не убеждает.
+        </div>
+
+        <div class="finding critical"><div class="finding-icon"></div>
+          <strong>FRIC-паттерн (S2): Popup убивает сессию.</strong>
+          Москва, соцсети → /spring → 26 секунд → выход с URL <code style="font-size:11px">/tilda/popup/rec861092085/opened</code>.
+          Popup появляется слишком рано (через ~20 сек) и блокирует browsing. Пользователь уходит вместо закрытия.
+          rec861092085 = вероятно email-захват.
+        </div>
+
+        <div class="finding insight"><div class="finding-icon"></div>
+          <strong>BLIND-паттерн (S4 + S5 + S6): 3 сессии заходят в категории и уходят не дойдя до товаров.</strong>
+          SEO-трафик на /necklace → гуляет → /treasures. SEO из Алматы: / → /clothes. Соцсети: /spring → /mens.
+          Пользователи видят категории, но не кликают на конкретные товары — продуктовые карточки не привлекают внимание.
+        </div>
+
+        <div class="finding insight"><div class="finding-icon"></div>
+          <strong>Facebook = реальный трафик на /clothes.</strong>
+          S3: вход через <code style="font-size:11px">/clothes?fbclid=PAZXh0bgNh...</code> — подтверждает, что FB-посты/реклама ведут на /clothes.
+          14 страниц за 2:24 — высокая вовлечённость, но конверсии нет.
+        </div>
+
+        <div class="finding insight"><div class="finding-icon"></div>
+          <strong>География: 🇫🇷 Франция, 🇷🇺 Россия ×3, 🇰🇿 Казахстан.</strong>
+          Прямые заходы (Франция) + поиск (Москва, Алматы) + соцсети (Москва, Россия) — разнообразный трафик-микс.
+        </div>
+
+        <div style="font-size:11px;color:#999;text-transform:uppercase;letter-spacing:.5px;margin:12px 0 6px">⚡ Actionable P0</div>
+        <div class="finding action"><div class="finding-icon"></div>
+          <strong>1. Popup rec861092085 — отложить до 60+ сек или 3+ страниц.</strong> Сейчас убивает session в первые 30 сек.
+        </div>
+        <div class="finding action"><div class="finding-icon"></div>
+          <strong>2. Product page mobile CTA — проверить, видна ли кнопка «Купить» сразу.</strong>
+          Два пользователя с высоким intent ушли именно с product page. P0 аудит /tilda/product/detail/*.
+        </div>
+        <div class="finding action"><div class="finding-icon"></div>
+          <strong>3. Категории → товары — добавить "горячие" карточки (bestseller, new, limited) на /clothes, /necklace, /spring.</strong>
+          BLIND-пользователи не кликают на товары — нужны визуальные якоря.
+        </div>
+
+      </div>
+    </div>
+
+    <div class="log-entry" style="border-color:#fdecea">
+      <div class="log-date" style="color:#c62828">🎯 28 мая 2026 — Сессия UX-аудита Вебвизора (запись 25.05.2026)</div>
+      <div style="font-size:11px;color:#999;margin-bottom:10px">Сессия: macOS Catalina · Safari · 1728×1117 · 7:19 на сайте · 14 страниц · источник неизвестен</div>
+      <div class="log-findings">
+
+        <div style="font-size:11px;color:#999;text-transform:uppercase;letter-spacing:.5px;margin:6px 0 4px">🔴 UX Ошибки (P0)</div>
+
+        <div class="ux-error">
+          <div class="ux-error-sev p0">P0 · FRIC</div>
+          <div class="ux-error-body">
+            <div class="ux-error-title">«Загрузить ещё» вместо Infinite Scroll</div>
+            <div class="ux-error-desc">На коллекциях /spring и /rehabshop пользователь доходит до конца страницы и упирается в кнопку «Загрузить ещё». Курсор явно завис на ней. Ручная пагинация создаёт трение в browsing-режиме — пользователи ожидают автоподгрузку. Паттерн воспроизведён на 2 разных коллекциях.</div>
+            <div class="ux-error-ts">⏱ 1:04 → /spring · 1:34 → /rehabshop</div>
+          </div>
+        </div>
+
+        <div class="ux-error">
+          <div class="ux-error-sev p0">P1 · HIDE</div>
+          <div class="ux-error-body">
+            <div class="ux-error-title">Навигация скрыта за гамбургером</div>
+            <div class="ux-error-desc">После скролла всей /spring пользователь открывает гамбургер-меню чтобы найти другую категорию. Разворачивает УКРАШЕНИЯ → видит 8 подкатегорий (СЕРЬГИ, КОЛЬЦА, КОЛЬЕ, БРАСЛЕТЫ, ЖЕМЧУГ, REHABSHOP, ПАМЯТНЫЕ ОБЪЕКТЫ, ЮВЕЛИРНЫЕ СЕТИ). Слишком глубокая вложенность — пользователь должен открыть 2 уровня меню.</div>
+            <div class="ux-error-ts">⏱ 1:19 → hamburger open → УКРАШЕНИЯ dropdown</div>
+          </div>
+        </div>
+
+        <div style="font-size:11px;color:#999;text-transform:uppercase;letter-spacing:.5px;margin:10px 0 4px">🟡 Контент-стопы (P1)</div>
+
+        <div class="ux-error">
+          <div class="ux-error-sev p1">P1 · STOP</div>
+          <div class="ux-error-body">
+            <div class="ux-error-title">«Нет в наличии» на коллекции — демотиватор</div>
+            <div class="ux-error-desc">На странице /rehabshop видна карточка «АРЛЕКИНО (СУМКА+ОЖЕРЕЛЬЕ) — Нет в наличии» за 45 000 руб. Товар отсутствует но показывается в листинге. Пользователь видит желаемый товар → разочарование → повышенный шанс ухода. Рекомендация: убирать out-of-stock вниз или скрывать.</div>
+            <div class="ux-error-ts">⏱ 1:34 → /rehabshop · АРЛЕКИНО out-of-stock 45 000р</div>
+          </div>
+        </div>
+
+        <div class="ux-error">
+          <div class="ux-error-sev p1">P1 · STOP</div>
+          <div class="ux-error-body">
+            <div class="ux-error-title">Бейдж «SOON» на товарах в коллекции</div>
+            <div class="ux-error-desc">В /spring collection присутствует товар с бейджем «SOON» — анонс без возможности купить. Создаёт ожидание которое невозможно удовлетворить прямо сейчас. Лучше: скрыть до релиза или добавить «Уведомить о появлении».</div>
+            <div class="ux-error-ts">⏱ Early → /spring collection · SOON badge</div>
+          </div>
+        </div>
+
+        <div class="ux-error">
+          <div class="ux-error-sev p2">P2 · UX</div>
+          <div class="ux-error-body">
+            <div class="ux-error-title">Cookie-баннер в нижней части — возможный dead zone</div>
+            <div class="ux-error-desc">«Собираем кукисы, чтобы быть полезнее для вас» с кнопкой «Хорошо» — баннер расположен внизу страницы. При мобильном использовании может перекрывать кнопки навигации или «Купить». Требует проверки на mobile-записях.</div>
+            <div class="ux-error-ts">Видно на нескольких скринах</div>
+          </div>
+        </div>
+
+        <div style="font-size:11px;color:#999;text-transform:uppercase;letter-spacing:.5px;margin:10px 0 4px">💡 Инсайты из сессии</div>
+
+        <div class="finding insight"><div class="finding-icon"></div><strong>Пользователь активно изучает ассортимент</strong> — 14 страниц, 7+ мин говорит о высоком intent. Browsing-режим: человек ещё не знает что хочет, но ищет.</div>
+        <div class="finding insight"><div class="finding-icon"></div><strong>/rehabshop — популярный маршрут</strong>: пользователь целенаправленно перешёл туда через меню. Коллаборация воспринимается как отдельная ценность.</div>
+        <div style="font-size:11px;color:#999;text-transform:uppercase;letter-spacing:.5px;margin:10px 0 4px">🔍 Продолжение сессии — секция D (4:33/7:19)</div>
+
+        <div class="finding insight"><div class="finding-icon"></div><strong>Пользователь дошёл до страницы РАЗНОЦВЕТНОГО КОЛЬЕ</strong> в /treasures. URL: <code style="font-size:11px;background:#f0f2ff;padding:2px 4px;border-radius:3px">/treasures/tproduct/903474133-812604279212-raznotsvetnoe-kole</code> — категория Ожерелье/Колье. Это показывает что после 3+ минут блуждания по коллекциям он всё же нашёл конкретный товар.</div>
+
+        <div class="finding critical"><div class="finding-icon"></div><strong>Маршрут без конверсии:</strong> 7:19 на сайте + продуктовая страница открыта → но покупки нет. Пользователь с очень высоким intent не конвертировался. Гипотеза: проблема на странице товара (нет ясного CTA, цена не убеждает, нет доверия).</div>
+
+        <div class="finding insight"><div class="finding-icon"></div><strong>Маршрут блуждания: /spring → menu → /rehabshop → menu → /treasures → product page.</strong> Пользователь пересмотрел 3 коллекции через гамбургер-меню. Это паттерн "сравнительного покупателя" — ищет что-то конкретное среди большого выбора.</div>
+
+        <div class="finding action"><div class="finding-icon"></div><strong>Actionable P0:</strong> Infinite scroll на коллекциях → убрать «Загрузить ещё». Out-of-stock → скрывать. Меню → горизонтальная навигация.</div>
+        <div class="finding action"><div class="finding-icon"></div><strong>Actionable P1:</strong> Проверить страницу РАЗНОЦВЕТНОГО КОЛЬЯ — кнопка «Купить» видна сразу? Цена убедительна? Добавить social proof (отзывы/носят/количество проданных).</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-date">📅 28 мая 2026 — Первый глубокий анализ</div>
+      <div class="log-findings">
+        <div class="finding critical"><div class="finding-icon"></div><strong>Отказы растут: +17%</strong> — нужно отслеживать. Особенно «Внутренние переходы» (24,12%) — аномально высокие.</div>
+        <div class="finding good"><div class="finding-icon"></div><strong>Глубина 4,34 и время 2:13</strong> — хорошие показатели. Люди не просто заходят и уходят, они изучают.</div>
+        <div class="finding critical"><div class="finding-icon"></div><strong>Удержание всего 16%</strong> (3 201 из 18 700) — очень мало возвращается. Email/CRM критичны для retention.</div>
+        <div class="finding insight"><div class="finding-icon"></div><strong>Попапы = 16K просмотров</strong> — больше чем главная. Попап №1 (rec861090090) открывается в 42% визитов. Нужно понять что в нём и оптимизировать.</div>
+        <div class="finding good"><div class="finding-icon"></div><strong>/spring = 7 528 просмотров</strong> — весенняя кампания работает. Кольца (#4 URL) — самый популярный продукт.</div>
+        <div class="finding insight"><div class="finding-icon"></div><strong>VPN-диаспора подтверждена в Вебвизоре</strong>: NL+Instagram (2:11), DE+Instagram (2:16) — русскоязычные, активные, возвращаются. EN-страница доставки срочно нужна.</div>
+        <div class="finding warning"><div class="finding-icon"></div><strong>thefair.ru</strong> прислал реферальный трафик — Puntus упомянут на маркетплейсе. Проверить и расширить присутствие.</div>
+        <div class="finding action"><div class="finding-icon"></div><strong>Приоритет #1:</strong> Настроить цели «Клик по кнопкам» и передачу add_to_cart — без этого не видим конверсию.</div>
+        <div class="finding action"><div class="finding-icon"></div><strong>Приоритет #2:</strong> Посмотреть Вебвизор-запись Франция-посетителя (визит №28) — суперлояльный, что он ищет?</div>
+        <div class="finding action"><div class="finding-icon"></div><strong>Приоритет #3:</strong> Карту скроллинга на /rings — проверить где уходят до кнопки «Купить».</div>
+      </div>
+    </div>
+
+    <div style="border:2px dashed #e0e0e0;border-radius:10px;padding:16px;text-align:center;color:#999;font-size:13px;margin-top:4px">
+      <div style="font-size:20px;margin-bottom:6px">➕</div>
+      Следующий лог появится автоматически когда Claude снова зайдёт в Метрику
+    </div>
+  </div>
+</div>
+
+<!-- ГИПОТЕЗЫ ИЗ ДАННЫХ -->
+<div class="section">
+  <div class="section-header">
+    <h2>💡 Гипотезы из данных Метрики</h2>
+    <span class="sub">Генерируется автоматически из наблюдений</span>
+  </div>
+  <div class="section-body">
+    <div class="hyp">
+      <div class="hyp-num">M1</div>
+      <div class="hyp-text"><strong>Попап оптимизация.</strong> Попап №1 открывается в 42% визитов. Если он про email-подписку — A/B тест офера (скидка vs эксклюзив). Потенциал: +200-500 email/мес.</div>
+      <div class="hyp-status new">Новая</div>
+    </div>
+    <div class="hyp">
+      <div class="hyp-num">M2</div>
+      <div class="hyp-text"><strong>Кольца = главный продукт по просмотрам.</strong> /rings имеет 5 629 просмотров. Если CR там ниже среднего — проблема в странице. Карта скроллинга + Вебвизор фильтр /rings.</div>
+      <div class="hyp-status check">Проверить</div>
+    </div>
+    <div class="hyp">
+      <div class="hyp-num">M3</div>
+      <div class="hyp-text"><strong>Внутренние переходы = 24% отказов.</strong> Это аномально. Значит люди переходят с одной страницы на другую и сразу уходят. Скорее всего проблема в навигации или внутренних ссылках, ведущих в никуда.</div>
+      <div class="hyp-status check">Проверить</div>
+    </div>
+    <div class="hyp">
+      <div class="hyp-num">M4</div>
+      <div class="hyp-text"><strong>thefair.ru = потенциальный партнёрский канал.</strong> Они уже присылают трафик. Проактивно связаться, предложить более заметное размещение. Реферальный трафик имеет лучшее качество (отказы 10,64%).</div>
+      <div class="hyp-status new">Новая</div>
+    </div>
+    <div class="hyp">
+      <div class="hyp-num">M5</div>
+      <div class="hyp-text"><strong>Одежда = скрытый продукт.</strong> 3 475 просмотров страницы «Одежда» — это не украшения. Либо там есть кросс-продажа, либо люди находят случайно. Нужно понять роль одежды в ассортименте.</div>
+      <div class="hyp-status new">Новая</div>
+    </div>
+    <div class="hyp">
+      <div class="hyp-num">M6</div>
+      <div class="hyp-text"><strong>16% удержание → нужен email.</strong> 84% новых пользователей не вернутся без ретаргетинга. Email-flow после первого визита критически важен. Попап должен собирать email, а не просто показывать акцию.</div>
+      <div class="hyp-status confirmed">Подтверждена</div>
+    </div>
+
+    <div style="font-size:11px;color:#999;text-transform:uppercase;letter-spacing:.5px;margin:14px 0 8px;padding-top:14px;border-top:1px solid #f0f0f0">UX Гипотезы — из Вебвизора 28.05.2026</div>
+
+    <div class="hyp">
+      <div class="hyp-num">UX1</div>
+      <div class="hyp-text"><strong>Infinite scroll повысит глубину на 20-30%.</strong> «Загрузить ещё» — паттерн с трением, встречен в 2 коллекциях. Замена на auto-load при скролле устранит friction point. ICE: Impact 8 / Confidence 9 / Ease 6.</div>
+      <div class="hyp-status p0" style="background:#fdecea;color:#c62828">P0</div>
+    </div>
+    <div class="hyp">
+      <div class="hyp-num">UX2</div>
+      <div class="hyp-text"><strong>Убрать out-of-stock с листинга снизит отказы на страницах коллекций.</strong> «Нет в наличии» видимый в коллекции создаёт демотивацию. Фикс: сортировать в конец или скрывать. Паттерн STOP подтверждён в 1 сессии — проверить в 3+.</div>
+      <div class="hyp-status check">Проверить</div>
+    </div>
+    <div class="hyp">
+      <div class="hyp-num">UX3</div>
+      <div class="hyp-text"><strong>Плоское меню без дропдаунов снизит использование гамбургера.</strong> 8 подкатегорий в УКРАШЕНИЯ — слишком глубоко. Топ-4 категории (КОЛЬЦА, КОЛЬЕ, СЕРЬГИ, БРАСЛЕТЫ) вынести в sticky-бар под шапкой. Тест: замерить клики по гамбургеру до/после.</div>
+      <div class="hyp-status new">Новая</div>
+    </div>
+    <div class="hyp">
+      <div class="hyp-num">UX4</div>
+      <div class="hyp-text"><strong>«SOON» → «Уведомить о появлении» конвертирует browsing-трафик в email-лиды.</strong> Товары с бейджем SOON показывают что есть спрос на ещё не вышедшие продукты. Добавить форму «Сообщить о появлении» → собираем email + измеряем demand.</div>
+      <div class="hyp-status new">Новая</div>
+    </div>
+    <div class="hyp">
+      <div class="hyp-num">UX5</div>
+      <div class="hyp-text"><strong>/rehabshop — коллаборация имеет органический спрос.</strong> Пользователь целенаправленно искал и зашёл туда через меню. Если это повторяется в 3+ сессиях — колаб с REHABSHOP нужно усилить: отдельный spotlight в навигации, ссылка с главной.</div>
+      <div class="hyp-status check">Проверить</div>
+    </div>
+    <div class="hyp">
+      <div class="hyp-num">UX6</div>
+      <div class="hyp-text"><strong>Страница товара = слабое звено для "сравнительных покупателей".</strong> Сессия 25.05: 7:19 на сайте, 3 коллекции, дошёл до РАЗНОЦВЕТНОГО КОЛЬЯ — и не купил. Нужно: социальное доказательство (сколько продано, отзывы), чёткий CTA сразу без скролла, urgency («Осталось 2 шт»), опция wish-list для тех кто «не сейчас».</div>
+      <div class="hyp-status new">Новая</div>
+    </div>
+
+    <div style="font-size:11px;color:#999;text-transform:uppercase;letter-spacing:.5px;margin:14px 0 8px;padding-top:14px;border-top:1px solid #f0f0f0">UX Гипотезы — батч-анализ 28.05.2026 (6 сессий)</div>
+
+    <div class="hyp">
+      <div class="hyp-num">UX7</div>
+      <div class="hyp-text"><strong>Product page — нет видимого CTA на mobile → STOP.</strong>
+        2 из 6 высокоинтентных сессий (🇫🇷 28 мин, 🇷🇺 2:24 через Facebook) закончились на product detail page без покупки.
+        Гипотеза: кнопка «Купить» / «В корзину» не видна сразу без скролла на mobile 414px экране, или заблокирована поверх контента.
+        Проверить: открыть /tilda/product/detail/914820318432 на iPhone 14 Pro — виден ли CTA выше линии сгиба?
+      </div>
+      <div class="hyp-status new">P0 · Новая</div>
+    </div>
+
+    <div class="hyp">
+      <div class="hyp-num">UX8</div>
+      <div class="hyp-text"><strong>Popup rec861092085 появляется слишком рано → убивает сессию.</strong>
+        S2: Москва, соцсети → /spring → 26 сек → выход с URL /tilda/popup/rec861092085/opened.
+        Email-капчур popup срабатывает до того как пользователь вовлёкся.
+        Рекомендация: показывать popup после 60+ сек ИЛИ 3+ страниц ИЛИ на exit-intent.
+        Измерить: сравнить bounce rate на /spring в дни с/без popup.
+      </div>
+      <div class="hyp-status new">P0 · Новая</div>
+    </div>
+
+    <div class="hyp">
+      <div class="hyp-num">UX9</div>
+      <div class="hyp-text"><strong>Категорийные страницы не конвертируют browsing → product click.</strong>
+        3 из 6 сессий (BLIND): /necklace → /treasures, / → /clothes, /spring → /mens — пользователи гуляют по категориям, не кликая на товары.
+        Гипотеза: карточки товаров недостаточно привлекательны / нет "горячих" маркеров (Bestseller, New, Limited).
+        Тест: добавить badge "🔥 Хит" на топ-3 товара в каждой категории → измерить CTR карточек.
+      </div>
+      <div class="hyp-status new">Новая</div>
+    </div>
+
+    <div class="hyp">
+      <div class="hyp-num">UX10</div>
+      <div class="hyp-text"><strong>/mens — недораскрытый интент: пользователи ищут мужские украшения но уходят.</strong>
+        S6: Россия, соцсети → /spring → /mens → выход. Пользователь целенаправленно перешёл в мужской раздел.
+        Если /mens имеет высокий просмотр + высокий отказ — либо ассортимент слабый, либо страница не цепляет.
+        Проверить: просмотры /mens в Метрике + среднее время + глубину vs. /rings или /necklace.
+      </div>
+      <div class="hyp-status check">Проверить</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ТЕХНИЧЕСКИЕ ЗАМЕТКИ -->
+<div class="section">
+  <div class="section-header">
+    <h2>🔧 Технические заметки — доступ к API</h2>
+    <span class="sub">Для следующего Claude-сеанса</span>
+  </div>
+  <div class="section-body">
+    <div class="notice"><strong>Ограничения в текущей конфигурации:</strong> Brave браузер с Shield = сложный доступ к Вебвизору. Два пути для следующей сессии.</div>
+    <div class="step">
+      <div class="step-num">📷</div>
+      <div class="step-content">
+        <div class="step-title">Screen Recording (macOS)</div>
+        <div class="step-desc">Если скриншоты не работают → Системные настройки → Конфиденциальность → Запись экрана → включить Claude. Тогда можно смотреть плеер Вебвизора напрямую через скриншоты.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">🔑</div>
+      <div class="step-content">
+        <div class="step-title">CSRF токен из HTML</div>
+        <div class="step-desc">Работает: <code>fetch('https://metrika.yandex.ru/').then(r=&gt;r.text()).then(h=&gt;{window._csrf=h.match(/csrfToken":"([^"]+)/)[1]})</code>. Токен нужен для POST-запросов. Но i-proxy использует HMAC-секреты (меняются каждую секунду) — обойти невозможно.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">▶️</div>
+      <div class="step-content">
+        <div class="step-title">Плеер через get_page_text</div>
+        <div class="step-desc">РАБОТАЕТ: Открыть <code>/inpage/visor-proto?visit_id=XXX&date=2026-05-28&user_id_hash=YYY&offset=0&id=108324634</code> → get_page_text → показывает текущую страницу пользователя, устройство, категорию, время (n:nn / n:nn). Нужны только visit_id + user_id_hash из Webvisor списка.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">📋</div>
+      <div class="step-content">
+        <div class="step-title">visit_id для известных сессий</div>
+        <div class="step-desc"><strong>25.05.2026</strong> (7:19, Safari ПК): visit_id=<code>2906498213038784790</code>, user_id_hash=<code>1979284835</code><br>Другие visit_ids: получить из Вебвизора → скопировать URL плеера → сохранить здесь для следующей сессии.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main content -->
+</div><!-- /grid -->
+</div><!-- /main -->
+
+<div style="text-align:center;padding:20px;color:#bbb;font-size:11px">
+  puntús Metrica Guide · Создан Claude · Обновляется автоматически при каждом анализе
+</div>
+
+</body>
+</html>

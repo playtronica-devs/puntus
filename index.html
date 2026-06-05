@@ -227,12 +227,23 @@ body.simple .simple-note{display:block}
   <div class="header-inner">
     <div class="logo">puntús <span>· Growth Dashboard</span></div>
     <div class="header-meta">
-      <span class="hbadge">2 апр — 27 мая 2026</span>
-      <span class="hbadge">250 заказов · 8 нед</span>
+      <span class="hbadge">2 апр — 31 мая 2026</span>
+      <span class="hbadge">250+ заказов · 8+ нед</span>
+      <span class="hbadge" style="background:rgba(92,107,192,.35)">🆕 Обновлено 05.06.2026</span>
       <a href="https://playtronica-devs.github.io/puntus/metrica-guide.html" target="_blank"
          style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;text-decoration:none;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;transition:background .2s"
          onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'">
         📊 UX Вебвизор
+      </a>
+      <a href="email-plan.html" target="_blank"
+         style="display:inline-flex;align-items:center;gap:5px;background:#fff;border:1px solid #fff;color:#3949ab;text-decoration:none;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap;transition:opacity .2s"
+         onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+        📧 Email-план
+      </a>
+      <a href="seo-plan.html" target="_blank"
+         style="display:inline-flex;align-items:center;gap:5px;background:#fff;border:1px solid #fff;color:#3949ab;text-decoration:none;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap;transition:opacity .2s"
+         onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+        🔍 SEO-план
       </a>
       <button class="mode-toggle" id="modeBtn" onclick="toggleMode()">
         <span class="dot"></span>
@@ -243,8 +254,8 @@ body.simple .simple-note{display:block}
 </div>
 
 <div class="alert-strip">
-  <span class="t-tech">🔥 SEO CR 2.25% при среднем 1.11% · Мужчины конвертируют в 3.8× чаще · Реклама = 0 бюджета · VPN-трафик из NL/DE занижает реальный CR диаспоры</span>
-  <span class="t-simple">🔥 Из поиска покупает каждый 44-й · Мужчины-дарители в 4× активнее · Реклама не запущена · Русские за рубежом хотят купить, но им мешает сайт</span>
+  <span class="t-tech">🆕 Неделя 25–31 мая: 4 184 визита · 472 916 ₽ · 27 покупок · Реф. ссылки CR 4.35% = в 7× лучше соцсетей · Конверсия недели 0.70% (тренд вниз, норма 1–2%)</span>
+  <span class="t-simple">🆕 На прошлой неделе: 4 тысячи посетителей, 472 тысячи выручки · Ссылки с других сайтов конвертируют в 7 раз лучше Instagram · Конверсия упала, надо разбираться</span>
   <span class="alert-pill" id="potentialPill">Потенциал: —</span>
 </div>
 
@@ -259,8 +270,8 @@ body.simple .simple-note{display:block}
     <h3>📋 Три вещи прямо сейчас</h3>
     <div class="owner-grid">
       <div class="owner-card bad">
-        <div class="owner-label">🔴 Главная проблема</div>
-        85 из 86 уходят без покупки. На телефоне покупают вдвое реже, чем с компьютера.
+        <div class="owner-label">🔧 Чинить аналитику</div>
+        Проверено в Метрике: оплата НЕ сломана, заказы идут каждый день. Но теряются данные — домен www без редиректа и не считается «добавление в корзину». Починить, чтобы видеть правду.
       </div>
       <div class="owner-card bad">
         <div class="owner-label">🔴 Потеря денег</div>
@@ -274,35 +285,35 @@ body.simple .simple-note{display:block}
   </div>
 
   <!-- ── KPI ─────────────────────────────────── -->
-  <div class="section-title"><span class="t-tech">Ключевые метрики — 8 недель</span><span class="t-simple">Главные цифры</span></div>
+  <div class="section-title"><span class="t-tech">Ключевые метрики — 8 недель (+ неделя 25–31 мая)</span><span class="t-simple">Главные цифры</span></div>
   <div class="kpi-grid">
     <div class="kpi-card">
-      <div class="kpi-label"><span class="t-tech">Выручка</span><span class="t-simple">Заработали</span></div>
+      <div class="kpi-label"><span class="t-tech">Выручка (8 нед)</span><span class="t-simple">Заработали за 8 недель</span></div>
       <div class="kpi-value green">4.9М</div>
-      <div class="kpi-sub">250 заказов</div>
-      <div class="kpi-trend up">↑ без рекламы</div>
-      <div class="kpi-explain">✅ Почти 5 млн без рекламы — ~2.5М в месяц.</div>
+      <div class="kpi-sub">Последняя нед: 472 916 ₽</div>
+      <div class="kpi-trend warn">↓ нед ниже среднего</div>
+      <div class="kpi-explain">✅ ~1.9М/мес. Пред. средняя ~2.5М — тренд вниз, следить.</div>
     </div>
     <div class="kpi-card">
       <div class="kpi-label"><span class="t-tech">Средний чек</span><span class="t-simple">Средняя покупка</span></div>
       <div class="kpi-value">19 582 ₽</div>
-      <div class="kpi-sub">SEO: 21 880 ₽</div>
-      <div class="kpi-trend warn">Соцсети: 18 748 ₽</div>
-      <div class="kpi-explain">✅ Из Яндекса покупают дороже на 3 000 ₽.</div>
+      <div class="kpi-sub">Нед 25–31 мая: ~17 500 ₽</div>
+      <div class="kpi-trend down">↓ чек снизился</div>
+      <div class="kpi-explain">⚠️ Средний чек на прошлой неделе снизился с 19.5К до ~17.5К. Сезонность или тренд?</div>
     </div>
     <div class="kpi-card">
       <div class="kpi-label"><span class="t-tech">Конверсия</span><span class="t-simple">Из 100 гостей покупают</span></div>
-      <div class="kpi-value orange">1.11%</div>
-      <div class="kpi-sub">Норма DTC: 1–2%</div>
-      <div class="kpi-trend warn">Есть куда расти</div>
-      <div class="kpi-explain">⚠️ 1 из 90 покупает. +0.4% CR = выручка ×1.5 при том же трафике.</div>
+      <div class="kpi-value red">0.70%</div>
+      <div class="kpi-sub">8 нед среднее: 1.11%</div>
+      <div class="kpi-trend down">↓ −37% за последнюю нед</div>
+      <div class="kpi-explain">🔴 Конверсия упала с 1.11% до 0.70% за неделю 25–31 мая. Проверить — технический баг или сезон?</div>
     </div>
     <div class="kpi-card">
       <div class="kpi-label"><span class="t-tech">Визиты</span><span class="t-simple">Посетителей</span></div>
       <div class="kpi-value">24 938</div>
-      <div class="kpi-sub">18К уникальных</div>
-      <div class="kpi-trend up">↑ +18.3%</div>
-      <div class="kpi-explain">✅ ~450 человек в день — и это без рекламы.</div>
+      <div class="kpi-sub">Нед: 4 184 · ~598/день</div>
+      <div class="kpi-trend up">↑ трафик стабилен</div>
+      <div class="kpi-explain">✅ ~600 человек в день — трафик без рекламы стабилен.</div>
     </div>
     <div class="kpi-card">
       <div class="kpi-label"><span class="t-tech">Retention</span><span class="t-simple">Возвращаются снова</span></div>
@@ -313,10 +324,10 @@ body.simple .simple-note{display:block}
     </div>
     <div class="kpi-card">
       <div class="kpi-label"><span class="t-tech">Вовлечённость</span><span class="t-simple">Интерес к сайту</span></div>
-      <div class="kpi-value">2м 13с</div>
-      <div class="kpi-sub">4.3 стр/визит</div>
-      <div class="kpi-trend down">↓ −10.5% / −12.9%</div>
-      <div class="kpi-explain">⚠️ Трафик растёт, вовлечённость падает — соцсети ведут менее заинтересованных.</div>
+      <div class="kpi-value green">2м 21с</div>
+      <div class="kpi-sub">4.24 стр/визит</div>
+      <div class="kpi-trend up">↑ улучшилось</div>
+      <div class="kpi-explain">✅ Вовлечённость выросла: 2:21 (было 2:13), 4.24 страниц. Отказы снизились до 15.99%.</div>
     </div>
   </div>
 
@@ -325,44 +336,45 @@ body.simple .simple-note{display:block}
   <div class="two-col">
     <div class="card">
       <div class="card-title">🚦 <span class="t-tech">Трафик · CR · Доход</span><span class="t-simple">Кто приходит и кто покупает</span></div>
+      <div style="font-size:10px;color:#999;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px">8 нед (апр–май) → неделя 25–31 мая</div>
       <div class="bar-row">
         <div class="bar-label" style="font-weight:700">🔥 <span class="t-tech">Поиск (SEO)</span><span class="t-simple">Яндекс / Google</span></div>
         <div class="bar-track"><div class="bar-fill" style="width:64%;background:#26a69a"></div></div>
-        <div class="bar-val" style="color:#26a69a;font-weight:700">22% · 1.97М</div>
-        <div class="bar-cr"><span class="cr-chip cr-green">2.25%</span></div>
+        <div class="bar-val" style="color:#26a69a;font-weight:700">25% · 133К ₽</div>
+        <div class="bar-cr"><span class="cr-chip cr-orange" title="8 нед: 2.25%">0.70% ↓</span></div>
       </div>
       <div class="bar-row">
         <div class="bar-label"><span class="t-tech">Прямые</span><span class="t-simple">Набрали адрес сами</span></div>
         <div class="bar-track"><div class="bar-fill" style="width:87%;background:#5c6bc0"></div></div>
-        <div class="bar-val">30% · 1.35М</div>
-        <div class="bar-cr"><span class="cr-chip cr-orange">0.92%</span></div>
+        <div class="bar-val">25% · 98К ₽</div>
+        <div class="bar-cr"><span class="cr-chip cr-orange" title="8 нед: 0.92%">0.81%</span></div>
       </div>
       <div class="bar-row">
         <div class="bar-label"><span class="t-tech">Соцсети</span><span class="t-simple">Instagram / VK</span></div>
         <div class="bar-track"><div class="bar-fill" style="width:100%;background:#9c27b0"></div></div>
-        <div class="bar-val" style="color:#999">34% · 787К</div>
-        <div class="bar-cr"><span class="cr-chip cr-red">0.52%</span></div>
+        <div class="bar-val" style="color:#999">40% · 221К ₽</div>
+        <div class="bar-cr"><span class="cr-chip cr-red" title="8 нед: 0.52%">0.61%</span></div>
       </div>
       <div class="bar-row">
         <div class="bar-label"><span class="t-tech">Внутренние</span><span class="t-simple">Внутри сайта</span></div>
         <div class="bar-track"><div class="bar-fill" style="width:38%;background:#7986cb"></div></div>
-        <div class="bar-val">13%</div>
-        <div class="bar-cr"><span class="cr-chip cr-green">1.58%</span></div>
+        <div class="bar-val">9% · 5К ₽</div>
+        <div class="bar-cr"><span class="cr-chip cr-red" title="8 нед: 1.58%">0.34% ↓</span></div>
       </div>
-      <div class="bar-row">
-        <div class="bar-label"><span class="t-tech">Реф. ссылки</span><span class="t-simple">С других сайтов</span></div>
+      <div class="bar-row" style="background:#f3f7f0;border-radius:6px;padding:2px 4px">
+        <div class="bar-label" style="font-weight:700;color:#1b5e20">🔗 <span class="t-tech">Реф. ссылки</span><span class="t-simple">С других сайтов</span></div>
         <div class="bar-track"><div class="bar-fill" style="width:4%;background:#ffa726"></div></div>
-        <div class="bar-val">1.5%</div>
-        <div class="bar-cr"><span class="cr-chip cr-green">2.97%</span></div>
+        <div class="bar-val" style="color:#1b5e20;font-weight:700">0.8% · 15К ₽</div>
+        <div class="bar-cr"><span class="cr-chip cr-green" style="background:#1b5e20;color:#fff" title="8 нед: 2.97%">4.35% 🔥</span></div>
       </div>
       <div class="bar-row">
         <div class="bar-label" style="color:#ef5350">⚠️ Реклама</div>
         <div class="bar-track"><div class="bar-fill" style="width:0.3%;background:#ef5350"></div></div>
-        <div class="bar-val" style="color:#ef5350">1 визит</div>
-        <div class="bar-cr" style="color:#ef5350">0%</div>
+        <div class="bar-val" style="color:#ef5350">0</div>
+        <div class="bar-cr" style="color:#ef5350">—</div>
       </div>
-      <div style="margin-top:9px;padding:7px 10px;background:#e8f5e9;border-left:2px solid #26a69a;border-radius:0 6px 6px 0;font-size:11px;color:#1b5e20">
-        💡 SEO = 22% трафика → 40% дохода. Реф. ссылки: лучший CR 2.97% — PR масштабировать.
+      <div style="margin-top:9px;padding:7px 10px;background:#f3f7f0;border-left:2px solid #1b5e20;border-radius:0 6px 6px 0;font-size:11px;color:#1b5e20">
+        🔑 <strong>Открытие недели:</strong> Реф. ссылки CR 4.35% = в 7× лучше соцсетей (0.61%). PR и медиа > объём Instagram.
       </div>
     </div>
 
@@ -526,6 +538,13 @@ body.simple .simple-note{display:block}
   <div class="warn-block">
     <div class="warn-header">🚨 <span class="t-tech">Red Flags — реагировать немедленно</span><span class="t-simple">Срочные проблемы</span></div>
     <div class="warn-item">
+      <div class="warn-item-icon">🔧</div>
+      <div class="warn-item-text">
+        <strong>Аналитика теряет данные: www-домен и событие «в корзину»</strong>
+        <p>Живой аудит Метрики (05.06.2026): падение конверсии 25–31 мая — НЕ поломка оплаты, заказы шли каждый день. Но найдены 2 дыры в данных: (1) www.puntus.me без 301-редиректа → визиты теряются + SEO-дубль; (2) событие add (добавление в корзину) не передаётся в Метрику → воронку не построить. Чинить на стороне Tilda/домена.</p>
+      </div>
+    </div>
+    <div class="warn-item">
       <div class="warn-item-icon">🔴</div>
       <div class="warn-item-text">
         <strong>Реклама = 0 за 8 недель</strong>
@@ -552,7 +571,7 @@ body.simple .simple-note{display:block}
   </div>
 
   <!-- ── HYPOTHESES ─────────────────────────── -->
-  <div class="section-title"><span class="t-tech">Гипотезы роста — 17 приоритизированных</span><span class="t-simple">Что делать — по порядку важности</span></div>
+  <div class="section-title"><span class="t-tech">Гипотезы роста — 20 приоритизированных</span><span class="t-simple">Что делать — по порядку важности</span></div>
 
   <div class="tabs-bar">
     <button class="tab active" onclick="filterTable('all',this)">Все <span class="cnt" id="cnt-all">17</span></button>
@@ -592,7 +611,7 @@ body.simple .simple-note{display:block}
 
 <script>
 // ── GATE ─────────────────────────────────────────
-var PASS='puntus2024';
+var PASS='2026';
 function checkPass(){
   var v=document.getElementById('gateInput').value.trim();
   if(v===PASS){
@@ -658,21 +677,21 @@ function renderProd(){
 // ── HYPOTHESES ────────────────────────────────────
 var hypotheses=[
   {num:1,title:'Платная реклама — Яндекс.Директ',simpleTitle:'Запустить рекламу',
-   desc:'Сейчас 0 расходов. При CR 1% и чеке 19.5К — 500К бюджета = 3М выручки.',
-   simpleDesc:'Реклама не запущена. Тест 50 000 ₽ покажет, работает ли.',
+   desc:'Сейчас 0 расходов. При CR 1% и чеке 19.5К — 500К бюджета = 3М выручки. ⚠️ Запускать ТОЛЬКО после починки конверсии (#18) и email-захвата (#4) — иначе бюджет льётся в дырявую воронку.',
+   simpleDesc:'Реклама не запущена. Тест 50 000 ₽ покажет, работает ли. Но сначала надо починить сайт, иначе деньги уйдут впустую.',
    insight:'Реклама = 1 визит за 8 недель',simpleInsight:'С рекламы пришёл 1 человек за 2 месяца',
    valueNum:3000000,value:'3 000 000 ₽',valueSub:'ROAS 6× на бюджет 500К',
-   verify:'1. Директ 50К на «серебряное кольцо». 2. Замерить CPA и ROAS через 2 нед.',
-   simpleVerify:'Попросить специалиста запустить 50 000 ₽ в Яндекс. Через 2 недели смотреть заказы.',
-   effort:'mid',effortLabel:'Средне',simpleEffort:'2–4 недели',priority:1,priorityLabel:'КРИТИЧНО',simpleP:'🔴 Первое!',pClass:'p-critical',cat:'critical'},
+   verify:'1. Сначала закрыть #18 и #4. 2. Директ 50К на «серебряное кольцо». 3. Замерить CPA и ROAS через 2 нед.',
+   simpleVerify:'Сначала починить сайт и письма. Потом запустить тест 50 000 ₽ в Яндекс. Через 2 недели смотреть заказы.',
+   effort:'mid',effortLabel:'Средне',simpleEffort:'2–4 недели',priority:2,priorityLabel:'ВЫСОКИЙ',simpleP:'🟠 После воронки',pClass:'p-high',cat:''},
 
   {num:2,title:'SEO-контент — статьи и оптимизация',simpleTitle:'Статьи для Яндекса',
-   desc:'Поиск: CR 2.25%, 40% дохода при 22% трафика. 10 SEO-статей могут удвоить органику.',
-   simpleDesc:'Из поиска покупает каждый 44-й. 10 статей («колье в подарок», «кольцо ручной работы») удвоят такой трафик.',
+   desc:'Поиск: CR 2.25%, 40% дохода при 22% трафика. ✅ Стратегия + семантика (Wordstat: «что подарить девушке» 50К/мес, «кольцо с жемчугом» 4.9К) + 5 статей-черновиков готовы. Упор на НЧ лонг-тейл, уникальные карточки + гид по размерам, блог под подарки/сезон.',
+   simpleDesc:'Из поиска покупает каждый 44-й. Делать узкие точные страницы (серебро+жемчуг+форма), статьи «в подарок», уникальные описания товаров с размерами. Подробный план — в seo-strategy.md.',
    insight:'Поиск = 40% дохода при 22% трафика',simpleInsight:'SEO — лучший канал по соотношению трафик/деньги',
    valueNum:2200000,value:'2 200 000 ₽',valueSub:'+113 заказов × 19.5К ₽',
-   verify:'1. 10 SEO-статей под частотные запросы. 2. Оптимизировать meta карточек. 3. Organic через 60 дней.',
-   simpleVerify:'Написать 10 статей: «что подарить девушке», «серебро с камнем». Разместить в блоге.',
+   verify:'1. Семантика в Яндекс Wordstat (НЧ лонг-тейл). 2. Уникальные тексты карточек + гид по размерам. 3. Блог: подарки/сезон + JSON-LD. 4. YML-фид в Яндекс.Товары, Вебмастер+GSC. 5. Organic через 60 дней.',
+   simpleVerify:'Собрать запросы в Wordstat, написать статьи про подарки, переписать карточки с размерами. План — в seo-strategy.md.',
    effort:'mid',effortLabel:'Средне',simpleEffort:'Пара недель',priority:1,priorityLabel:'КРИТИЧНО',simpleP:'🔴 Первое!',pClass:'p-critical',cat:'critical'},
 
   {num:3,title:'Мужской трафик — «Подарок для неё»',simpleTitle:'Кампания для мужчин-дарителей',
@@ -684,13 +703,13 @@ var hypotheses=[
    simpleVerify:'Сделать страницу «Подарки для любимой». Запустить рекламу на мужчин 25–45 лет.',
    effort:'low',effortLabel:'Быстро',simpleEffort:'1–2 недели',priority:1,priorityLabel:'КРИТИЧНО',simpleP:'🔴 Первое!',pClass:'p-critical',cat:'critical quick'},
 
-  {num:4,title:'Email retention — post-purchase серия',simpleTitle:'Письма после покупки',
-   desc:'Retention 14.2% при норме 30%+. 170+ покупателей не получили ни одного письма. Email-flow: д7/д21/д45.',
-   simpleDesc:'14 из 100 возвращаются (нужно 30+). 3 письма после покупки — самое быстрое и дешёвое действие.',
+  {num:4,title:'Email retention — post-purchase серия ✅ план готов',simpleTitle:'Письма после покупки ✅ готово',
+   desc:'Retention 14.2% при норме 30%+. ✅ Готовый план + 5 писем в стиле бренда (макеты на данных, прогноз, сервисы РФ) опубликован: playtronica-devs.github.io/puntus/email-plan.html (пароль 2026).',
+   simpleDesc:'14 из 100 возвращаются (нужно 30+). Готовые письма уже есть — осталось выбрать сервис рассылок и запустить.',
    insight:'3 088 вернулись из 18К+ посетителей',simpleInsight:'Retention 14% — норма 30+',
    valueNum:1500000,value:'1 500 000 ₽',valueSub:'+75 заказов/квартал × 19.5К ₽',
-   verify:'1. Письма: д7 «Как носить», д21 «Новинки», д45 «Специально для тебя». 2. Retention через 2 мес.',
-   simpleVerify:'Написать 3 письма и настроить автоотправку. Через 2 месяца смотреть повторные покупки.',
+   verify:'1. ✅ План и письма готовы (email-plan). 2. Выбрать сервис рассылок РФ. 3. Запустить welcome + брошенную корзину. 4. Retention через 2 мес.',
+   simpleVerify:'Письма уже написаны. Выбрать сервис рассылок и запустить. Через 2 месяца смотреть повторные покупки.',
    effort:'mid',effortLabel:'Средне',simpleEffort:'2–3 недели',priority:1,priorityLabel:'КРИТИЧНО',simpleP:'🔴 Первое!',pClass:'p-critical',cat:'critical'},
 
   {num:5,title:'Мобильный checkout — +0.3% CR',simpleTitle:'Упростить заказ с телефона',
@@ -766,13 +785,13 @@ var hypotheses=[
    effort:'low',effortLabel:'Быстро',simpleEffort:'1 неделя',priority:2,priorityLabel:'ВЫСОКИЙ',simpleP:'🟠 Важно',pClass:'p-high',cat:'quick'},
 
   {num:13,title:'Черногория / expat cluster — таргет',simpleTitle:'Русские в Черногории покупают!',
-   desc:'Черногория: 30 визитов, CR 6.67% — лучший из всех стран! Русская диаспора — тёплая аудитория.',
-   simpleDesc:'Из Черногории 30 человек, но 2 купили (CR 6.67%) — лучший результат в мире! Там живут русские эмигранты.',
+   desc:'Черногория: CR 6.67% — но это 2 заказа с 30 визитов = статистический шум, не инсайт. Не строить кампанию, а НАБЛЮДАТЬ: подтвердится ли на объёме 200–300 визитов.',
+   simpleDesc:'Из Черногории всего 30 человек и 2 покупки — слишком мало, чтобы делать выводы. Пока просто следить, а не вкладываться.',
    insight:'ME CR 6.67% — абсолютный максимум по всем странам',simpleInsight:'Из Черногории — самая высокая конверсия',
    valueNum:200000,value:'200 000 ₽',valueSub:'Expat cluster: 300 визитов → 20 заказов',
-   verify:'1. Instagram таргет Черногория (рус. яз). 2. CR через 30 дней.',
-   simpleVerify:'Запустить рекламу в Instagram на Черногорию на русском языке. Дёшево и быстро.',
-   effort:'low',effortLabel:'Быстро',simpleEffort:'2–3 дня',priority:2,priorityLabel:'ВЫСОКИЙ',simpleP:'🟠 Важно',pClass:'p-high',cat:'quick'},
+   verify:'1. Дождаться 200+ визитов из ME. 2. Если CR держится >2% — тогда Instagram-таргет (рус. яз).',
+   simpleVerify:'Подождать, пока наберётся больше посетителей из Черногории. Если покупают так же хорошо — тогда рекламу.',
+   effort:'low',effortLabel:'Быстро',simpleEffort:'наблюдать',priority:3,priorityLabel:'СРЕДНИЙ',simpleP:'🔵 Наблюдать',pClass:'p-mid',cat:''},
 
   {num:14,title:'Международная EN-версия сайта',simpleTitle:'Сайт на английском',
    desc:'NL: 2 061 визит, CR 0.53% vs RU 1.41%. puntus.world уже существует. Нужен полноценный EN-контент.',
@@ -808,7 +827,34 @@ var hypotheses=[
    valueNum:250000,value:'250 000 ₽',valueSub:'+13 заказов/мес × 19К',
    verify:'1. Instagram Stories на Алматы/Астану. 2. Рост KZ трафика через 30 дней.',
    simpleVerify:'Запустить Instagram-рекламу на Алматы и Астану.',
-   effort:'low',effortLabel:'Быстро',simpleEffort:'1 неделя',priority:3,priorityLabel:'СРЕДНИЙ',simpleP:'🔵 Потом',pClass:'p-mid',cat:'quick'}
+   effort:'low',effortLabel:'Быстро',simpleEffort:'1 неделя',priority:3,priorityLabel:'СРЕДНИЙ',simpleP:'🔵 Потом',pClass:'p-mid',cat:'quick'},
+
+  {num:18,title:'Достоверность данных: www-редирект + событие add',simpleTitle:'Починить потерю данных в аналитике',
+   desc:'Живой аудит Метрики (05.06): падение конверсии 25–31 мая — НЕ поломка checkout (заказы шли каждый день). Найдено 2 реальные дыры: (1) www.puntus.me без 301-редиректа теряет визиты + SEO-дубль; (2) событие add (в корзину) не передаётся — воронку корзина→оформление→покупка не построить.',
+   simpleDesc:'Проверили в Метрике: оплата не ломалась, заказы шли каждый день. Но часть данных теряется: домен www не настроен, и «добавление в корзину» не считается. Это надо починить, чтобы видеть правду.',
+   insight:'Конверсия упала из-за трафика/сезона, не из-за оплаты. Дыры: www + событие add',simpleInsight:'Оплата цела. Чинить надо аналитику, а не корзину',
+   valueNum:300000,value:'Чистые данные',valueSub:'Основа для всех решений',
+   verify:'1. 301-редирект www→puntus.me. 2. Включить передачу add в Tilda e-commerce. 3. Проверить воронку через 7 дней.',
+   simpleVerify:'Настроить редирект с www. Включить передачу «в корзину» в Tilda. Проверить через неделю.',
+   effort:'low',effortLabel:'Быстро',simpleEffort:'1–2 дня',priority:2,priorityLabel:'ВЫСОКИЙ',simpleP:'🟠 Важно',pClass:'p-high',cat:'quick'},
+
+  {num:19,title:'Порог бесплатной доставки + бандлы',simpleTitle:'Снизить порог доставки и собрать комплекты',
+   desc:'Бесплатная доставка от 30К = верхняя цена ожерелья. Средний чек 17–19К → почти никто не дотягивает, доставка платная = тормоз конверсии. Снизить порог до ~22–25К + виджет «добери до бесплатной» + бандлы (кольцо+серьги).',
+   simpleDesc:'Бесплатная доставка только от 30 000 ₽, а средняя покупка — 18 000. Почти все платят за доставку, и это отпугивает. Снизить порог и предлагать комплекты.',
+   insight:'Порог доставки = макс. цена → недостижим для среднего чека',simpleInsight:'Порог бесплатной доставки слишком высокий',
+   valueNum:400000,value:'400 000 ₽',valueSub:'Конверсия + средний чек',
+   verify:'1. Снизить порог до 22–25К. 2. Виджет «добери до бесплатной доставки». 3. Бандл-комплекты со скидкой. 4. CR и чек через 30 дней.',
+   simpleVerify:'Снизить порог бесплатной доставки. Добавить подсказку «добери до бесплатной». Собрать пару комплектов.',
+   effort:'low',effortLabel:'Быстро',simpleEffort:'2–3 дня',priority:2,priorityLabel:'ВЫСОКИЙ',simpleP:'🟠 Важно',pClass:'p-high',cat:'quick'},
+
+  {num:20,title:'Авто-выгрузка данных Метрики (Stat/Logs API)',simpleTitle:'Автоматический отчёт из Метрики',
+   desc:'Дашборд сейчас заполняется вручную. Подключить Stat API (агрегаты) + Logs API (сырые визиты/хиты) через OAuth-токен → авто-обновление цифр, архив сырых данных (Вебвизор живёт лишь ~15 дней), когорты и LTV.',
+   simpleDesc:'Сейчас цифры в дашборд вбиваются руками. Можно подключить выгрузку из Метрики, чтобы данные обновлялись сами и ничего не терялось.',
+   insight:'Дашборд ручной; сырые данные Вебвизора стираются через ~15 дней',simpleInsight:'Данные собираются вручную и часть со временем теряется',
+   valueNum:200000,value:'Скорость+точность',valueSub:'Решения на свежих данных, экономия времени',
+   verify:'1. Создать OAuth-токен Яндекса. 2. Скрипт выгрузки Stat/Logs API. 3. Планировщик раз в неделю. 4. Сложить в Google Drive / дашборд.',
+   simpleVerify:'Сделать токен доступа, настроить автоматическую выгрузку раз в неделю.',
+   effort:'mid',effortLabel:'Средне',simpleEffort:'2–4 дня',priority:3,priorityLabel:'СРЕДНИЙ',simpleP:'🔵 Потом',pClass:'p-mid',cat:''}
 ];
 
 var currentFilter='all',hypSortCol='value',hypSortDir='desc';
@@ -874,7 +920,7 @@ function renderHyp(){
 // ── INIT ─────────────────────────────────────────
 updateCounts();renderProd();renderHyp();
 var total=hypotheses.reduce(function(s,h){return s+h.valueNum},0);
-document.getElementById('potentialPill').textContent='Потенциал: '+(total/1000000).toFixed(1)+'М ₽';
+document.getElementById('potentialPill').textContent='Сумма гипотез: '+(total/1000000).toFixed(1)+'М ₽ (не складывать как прогноз)';
 </script>
 </body>
 </html>

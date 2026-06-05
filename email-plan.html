@@ -4,120 +4,160 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>puntús · Email-маркетинг — готовые письма и план</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --cream:#F6F3E8; --cream2:#efe9da; --ink:#222; --ink2:#393939; --gray:#6b6b6b;
   --coral:#FF8562; --coral-d:#e9663f; --terra:#83423E; --line:#e3ded0; --white:#fff;
+  --disp:'Fraunces',Georgia,serif; --ui:'Manrope','Helvetica Neue',Arial,sans-serif; --serif:Georgia,'Times New Roman',serif;
 }
-body{font-family:Georgia,'Times New Roman',serif;background:var(--cream);color:var(--ink);font-size:15px;line-height:1.7;-webkit-text-size-adjust:100%}
-.wrap{max-width:980px;margin:0 auto;padding:0 20px}
+body{font-family:var(--serif);background:var(--cream);color:var(--ink);font-size:15px;line-height:1.7;-webkit-text-size-adjust:100%}
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+a{color:inherit}
 
 /* PASSWORD GATE */
 #gate{position:fixed;inset:0;background:var(--cream);z-index:10000;display:flex;align-items:center;justify-content:center;padding:20px}
 #gate.hidden{display:none}
-.gate-card{background:var(--white);border:1px solid var(--line);border-top:5px solid var(--coral);border-radius:16px;box-shadow:0 10px 40px rgba(131,66,62,.12);padding:38px 36px;width:100%;max-width:380px;text-align:center}
-.gate-logo{font-family:Georgia,serif;font-size:26px;color:var(--ink)}
-.gate-logo span{display:block;font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--coral-d);margin-top:6px}
+.gate-card{background:var(--white);border:1px solid var(--line);border-top:5px solid var(--coral);border-radius:18px;box-shadow:0 14px 50px rgba(131,66,62,.14);padding:40px 36px;width:100%;max-width:380px;text-align:center}
+.gate-logo{font-family:var(--disp);font-size:30px;color:var(--ink);letter-spacing:-.5px}
+.gate-logo span{display:block;font-family:var(--ui);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--coral-d);margin-top:6px}
 .gate-sub{font-size:13px;color:var(--gray);margin:14px 0 18px}
-.gate-input{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 16px;font-size:16px;text-align:center;letter-spacing:.2em;outline:none;background:var(--cream);color:var(--ink);font-family:Georgia,serif}
+.gate-input{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 16px;font-size:16px;text-align:center;letter-spacing:.2em;outline:none;background:var(--cream);color:var(--ink);font-family:var(--serif)}
 .gate-input:focus{border-color:var(--coral)}
-.gate-btn{width:100%;margin-top:10px;background:var(--coral);color:#fff;border:none;border-radius:100px;padding:13px;font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.gate-btn{width:100%;margin-top:10px;background:var(--coral);color:#fff;border:none;border-radius:100px;padding:13px;font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .2s}
 .gate-btn:hover{background:var(--coral-d)}
 .gate-err{margin-top:10px;font-size:12px;color:#c0392b;min-height:16px}
 
-/* HEADER */
-.hero{background:var(--cream);color:var(--ink);padding:46px 20px 38px;border-top:6px solid var(--coral);border-bottom:1px solid var(--line)}
-.brand{font-family:'Helvetica Neue',Arial,sans-serif;font-size:13px;letter-spacing:.35em;text-transform:uppercase;color:var(--coral-d);margin-bottom:16px}
-.hero h1{font-family:Georgia,serif;font-size:33px;font-weight:400;letter-spacing:-.3px;line-height:1.25;margin-bottom:14px;color:var(--ink)}
-.hero h1 em{font-style:italic;color:var(--coral-d)}
-.hero p{font-size:15px;color:var(--ink2);max-width:660px}
-.hero .meta{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap}
-.chip{background:var(--white);border:1px solid var(--line);border-radius:100px;padding:5px 14px;font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink2)}
+/* STICKY NAV */
+.nav{position:sticky;top:0;z-index:900;background:rgba(246,243,232,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1000px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.nav-logo{font-family:var(--disp);font-size:19px;letter-spacing:-.3px;color:var(--ink)}
+.nav-logo b{color:var(--coral-d)}
+.nav-links{display:flex;gap:22px}
+.nav-links a{font-family:var(--ui);font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink2);text-decoration:none;transition:color .15s}
+.nav-links a:hover{color:var(--coral-d)}
 
-section{padding:42px 0 6px}
-.sec-label{font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--coral-d);margin-bottom:8px}
-.sec-title{font-family:Georgia,serif;font-size:25px;font-weight:400;margin-bottom:10px;color:var(--ink)}
+/* HERO — editorial cover */
+.hero{border-top:6px solid var(--coral)}
+.hero-in{max-width:1000px;margin:0 auto;padding:54px 24px 46px;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.brand{font-family:var(--ui);font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--coral-d);margin-bottom:18px}
+.hero h1{font-family:var(--disp);font-size:46px;font-weight:400;letter-spacing:-1px;line-height:1.08;margin-bottom:18px;color:var(--ink)}
+.hero h1 em{font-style:italic;color:var(--coral-d)}
+.hero p{font-size:15.5px;color:var(--ink2);max-width:520px}
+.hero .meta{margin-top:24px;display:flex;gap:9px;flex-wrap:wrap}
+.chip{background:var(--white);border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-family:var(--ui);font-size:11px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink2)}
+.hero-img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:18px;box-shadow:0 18px 50px rgba(131,66,62,.16)}
+
+section{padding:46px 0 6px}
+.sec-label{font-family:var(--ui);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--coral-d);margin-bottom:8px;font-weight:600}
+.sec-title{font-family:var(--disp);font-size:30px;font-weight:400;letter-spacing:-.5px;margin-bottom:10px;color:var(--ink)}
 .sec-intro{font-size:15px;color:var(--ink2);max-width:740px;margin-bottom:24px}
 
+/* DECISION */
+.decision{background:var(--ink);color:var(--cream);border-radius:20px;padding:34px 34px 30px;margin-top:6px}
+.decision .sec-label{color:var(--coral)}
+.decision h2{font-family:var(--disp);font-size:27px;font-weight:400;color:#fff;margin-bottom:8px}
+.dec-lead{font-size:15px;color:rgba(246,243,232,.85);max-width:680px;margin-bottom:22px}
+.dec-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px}
+.dec-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px 18px}
+.dec-card .t{font-family:var(--ui);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--coral);margin-bottom:8px;font-weight:600}
+.dec-card p{font-size:13.5px;color:rgba(246,243,232,.9);line-height:1.55}
+.dec-card b{color:#fff}
+.dec-ask{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:var(--coral);border-radius:14px;padding:16px 20px}
+.dec-ask .q{font-family:var(--disp);font-size:18px;color:#fff;font-style:italic;flex:1;min-width:240px}
+.dec-ask .o{font-family:var(--ui);font-size:11.5px;color:#fff;background:rgba(0,0,0,.18);border-radius:100px;padding:6px 13px;font-weight:600}
+
 /* PRIMER */
-.primer{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:6px 8px}
-.primer li{list-style:none;display:flex;gap:12px;padding:12px 14px;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink2)}
+.primer{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:6px 8px}
+.primer li{list-style:none;display:flex;gap:13px;padding:13px 14px;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink2)}
 .primer li:last-child{border-bottom:none}
-.primer .n{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--coral);color:#fff;font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.primer .n{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--coral);color:#fff;font-family:var(--ui);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
 .primer b{color:var(--ink)}
 
 /* UPLIFT */
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
-.kpi{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:20px 18px}
-.kpi .num{font-family:Georgia,serif;font-size:30px;color:var(--terra);line-height:1}
+.kpi{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:20px 18px;transition:transform .2s,box-shadow .2s}
+.kpi:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(131,66,62,.08)}
+.kpi .num{font-family:var(--disp);font-size:32px;color:var(--terra);line-height:1;letter-spacing:-.5px}
 .kpi .num.coral{color:var(--coral-d)}
-.kpi .lbl{font-family:'Helvetica Neue',Arial,sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);margin-top:8px}
+.kpi .lbl{font-family:var(--ui);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--gray);margin-top:8px;font-weight:600}
 .kpi .sub{font-size:13px;color:var(--ink2);margin-top:6px}
 
 .tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:14px}
 table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-th{font-family:'Helvetica Neue',Arial,sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);text-align:left;padding:12px 14px;background:var(--cream2);border-bottom:1px solid var(--line)}
+th{font-family:var(--ui);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--gray);text-align:left;padding:12px 14px;background:var(--cream2);border-bottom:1px solid var(--line);font-weight:700}
 td{padding:12px 14px;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--ink2);vertical-align:top}
 tr:last-child td{border-bottom:none}
-.val{font-family:Georgia,serif;color:var(--terra);font-size:15px;white-space:nowrap}
+.val{font-family:var(--disp);color:var(--terra);font-size:15px;white-space:nowrap}
 .yes{color:#2e7d32;font-weight:700}.no{color:#b23b3b}.mid{color:#c47a2c}
-.note-box{background:#fbf7ec;border-left:3px solid var(--coral);border-radius:0 10px 10px 0;padding:14px 18px;font-size:13.5px;color:var(--ink2);margin-top:18px}
+.note-box{background:#fbf7ec;border-left:3px solid var(--coral);border-radius:0 12px 12px 0;padding:15px 18px;font-size:13.5px;color:var(--ink2);margin-top:18px}
 .note-box strong{color:var(--terra)}
 
 /* EMAIL MOCKUPS */
 .mock-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-.mock{background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 6px 24px rgba(131,66,62,.06);display:flex;flex-direction:column}
+.mock{background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 6px 24px rgba(131,66,62,.06);display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.mock:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(131,66,62,.13)}
 .mock-tag{display:flex;align-items:center;gap:8px;padding:11px 18px;background:var(--cream2);border-bottom:1px solid var(--line);flex-wrap:wrap}
-.mock-tag .seq{font-family:'Helvetica Neue',Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--white);background:var(--coral);border-radius:100px;padding:3px 9px}
-.mock-tag .trig{font-family:'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--gray)}
+.mock-tag .seq{font-family:var(--ui);font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--white);background:var(--coral);border-radius:100px;padding:3px 9px}
+.mock-tag .trig{font-family:var(--ui);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--gray)}
 .mail-head{padding:14px 20px 12px;border-bottom:1px solid #f1ece0}
-.mail-from{font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.04em;color:var(--gray);margin-bottom:6px}
+.mail-from{font-family:var(--ui);font-size:11px;letter-spacing:.04em;color:var(--gray);margin-bottom:6px}
 .mail-from b{color:var(--ink);letter-spacing:.12em;text-transform:uppercase}
-.mail-subj{font-family:Georgia,serif;font-size:16px;color:var(--ink);font-weight:700;line-height:1.35}
+.mail-subj{font-family:var(--disp);font-size:17px;color:var(--ink);font-weight:500;line-height:1.3}
 .mail-prev{font-size:12.5px;color:var(--gray);margin-top:3px}
-.mail-img{width:100%;height:188px;object-fit:cover;object-position:center;display:block;background:var(--cream2)}
+.mail-img{width:100%;height:200px;object-fit:cover;object-position:center;display:block;background:var(--cream2)}
 .mail-body{padding:18px 20px 18px;flex:1}
 .mail-body p{font-size:13.5px;color:var(--ink2);line-height:1.65;margin-bottom:11px}
 .mail-body .greet{color:var(--ink);font-weight:700}
-.mail-body .h{font-family:Georgia,serif;font-size:18px;color:var(--ink);margin-bottom:10px;line-height:1.3}
-.cta{display:inline-block;background:var(--coral);color:#fff;font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:11px 22px;border-radius:100px;text-decoration:none;margin:4px 0 6px}
-.sign{font-style:italic;color:var(--terra);font-size:13.5px;margin-top:6px}
-.mail-foot{padding:12px 20px;border-top:1px solid #f1ece0;font-family:'Helvetica Neue',Arial,sans-serif;font-size:10px;line-height:1.6;color:#b1a890}
-.mail-foot a{color:#b1a890;text-decoration:underline}
-.why{font-family:'Helvetica Neue',Arial,sans-serif;font-size:11.5px;color:var(--gray);padding:12px 20px;border-top:1px dashed var(--line);background:#fbf9f2;line-height:1.55}
+.mail-body .h{font-family:var(--disp);font-size:19px;color:var(--ink);margin-bottom:10px;line-height:1.25}
+.cta{display:inline-block;background:var(--coral);color:#fff;font-family:var(--ui);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:11px 22px;border-radius:100px;text-decoration:none;margin:4px 0 6px;transition:background .2s}
+.cta:hover{background:var(--coral-d)}
+.sign{font-family:var(--disp);font-style:italic;color:var(--terra);font-size:14px;margin-top:6px}
+.mail-foot{padding:12px 20px;border-top:1px solid #f1ece0;font-family:var(--ui);font-size:10px;line-height:1.6;color:#b1a890}
+.mail-foot a{color:#b1a890}
+.why{font-family:var(--ui);font-size:11.5px;color:var(--gray);padding:12px 20px;border-top:1px dashed var(--line);background:#fbf9f2;line-height:1.55}
 .why b{color:var(--terra);text-transform:uppercase;letter-spacing:.04em;font-size:10.5px}
-.mval{font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;font-weight:700;color:#fff;background:var(--coral);padding:10px 20px;text-align:center;letter-spacing:.02em}
+.mval{font-family:var(--ui);font-size:12px;font-weight:700;color:#fff;background:var(--coral);padding:10px 20px;text-align:center;letter-spacing:.02em}
 .mval span{font-weight:400;opacity:.92}
 
 /* FLOW */
 .flow{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch;margin-bottom:8px}
 .flow-step{flex:1;min-width:150px;background:var(--white);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
-.flow-step .t{font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--coral-d);margin-bottom:6px}
+.flow-step .t{font-family:var(--ui);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--coral-d);margin-bottom:6px;font-weight:600}
 .flow-step .d{font-size:13px;color:var(--ink2)}
 .steps{counter-reset:s;list-style:none}
 .steps li{position:relative;padding:10px 0 10px 44px;border-bottom:1px solid var(--line);font-size:14.5px;color:var(--ink2)}
 .steps li:last-child{border-bottom:none}
-.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:9px;width:28px;height:28px;background:var(--coral);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Helvetica Neue',Arial,sans-serif;font-size:13px;font-weight:700}
+.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:9px;width:28px;height:28px;background:var(--coral);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--ui);font-size:13px;font-weight:700}
 .steps li b{color:var(--ink)}
 
-.rec{display:inline-block;background:var(--coral);color:#fff;font-family:'Helvetica Neue',Arial,sans-serif;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:100px;margin-left:6px;vertical-align:middle}
+.recb{display:inline-block;background:var(--coral);color:#fff;font-family:var(--ui);font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:100px;margin-left:6px;vertical-align:middle}
 .src{font-size:11px;color:var(--gray);margin-top:10px}
 .src a{color:var(--coral-d)}
-.foot{text-align:center;padding:38px 20px;color:#a99f8c;font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.04em}
+.foot{text-align:center;padding:44px 24px;color:#a99f8c;font-family:var(--ui);font-size:11px;letter-spacing:.04em}
 
+@media(max-width:820px){
+  .hero-in{grid-template-columns:1fr;gap:26px}
+  .hero-img{aspect-ratio:16/10;max-height:340px}
+  .hero h1{font-size:36px}
+  .nav-links{display:none}
+}
 @media(max-width:760px){
   .wrap{padding:0 16px}
   .kpis{grid-template-columns:1fr 1fr}
   .mock-grid{grid-template-columns:1fr}
-  .hero{padding:34px 16px 28px}.hero h1{font-size:24px}
+  .dec-grid{grid-template-columns:1fr}
+  .decision{padding:26px 22px}
   .flow{flex-direction:column}
   .tscroll table{min-width:680px}
 }
 @media(max-width:460px){
   body{font-size:14px}
   .kpis{grid-template-columns:1fr}
-  .sec-title{font-size:21px}.hero h1{font-size:22px}
+  .sec-title{font-size:24px}.hero h1{font-size:30px}
 }
 </style>
 </head>
@@ -135,19 +175,58 @@ tr:last-child td{border-bottom:none}
   </div>
 </div>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="wrap">
-    <div class="brand">puntús · email program</div>
-    <h1>Email-маркетинг для Puntús:<br><em>готовые письма и план запуска</em></h1>
-    <p>Презентация для команды. Сейчас email-канал не используется — это самый недорогой и быстрый рычаг роста. Внутри: как письма работают, готовые к публикации примеры с фото бренда, сколько они принесут и каким сервисом всё сделать в России.</p>
-    <div class="meta">
-      <span class="chip">Retention сейчас 14% · норма 30%+</span>
-      <span class="chip">Email сегодня ≈ 0% выручки</span>
-      <span class="chip">Бенчмарк ниши: 20–35% выручки</span>
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-in">
+    <div class="nav-logo">punt<b>ú</b>s · email</div>
+    <div class="nav-links">
+      <a href="#decision">Решение</a>
+      <a href="#uplift">Прогноз</a>
+      <a href="#mockups">Письма</a>
+      <a href="#tools">Сервисы</a>
     </div>
   </div>
 </div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-in">
+    <div>
+      <div class="brand">puntús · email program</div>
+      <h1>Письма, которые <em>возвращают</em> покупателей</h1>
+      <p>Презентация для команды. Email — самый недорогой и быстрый рычаг роста, а у нас он пока не используется. Внутри: что предлагаем утвердить, готовые письма с фото бренда и сколько это принесёт.</p>
+      <div class="meta">
+        <span class="chip">Retention 14% · норма 30%+</span>
+        <span class="chip">Email сегодня ≈ 0% выручки</span>
+        <span class="chip">Потенциал +250–500К ₽/мес</span>
+      </div>
+    </div>
+    <img class="hero-img" src="https://optim.tildacdn.com/tild6662-3161-4530-b031-316434303233/-/format/webp/260316000057740019S.jpg.webp" alt="Украшения Puntús">
+  </div>
+</div>
+
+<!-- DECISION -->
+<section id="decision">
+  <div class="wrap">
+    <div class="decision">
+      <div class="sec-label">Что предлагаем утвердить</div>
+      <h2>Запустить email — маленьким и быстрым шагом</h2>
+      <p class="dec-lead">Не строим всё сразу. Стартуем с одного сервиса и двух самых окупаемых писем за 2 недели, смотрим результат за месяц — и масштабируем то, что сработало. Дёшево и обратимо.</p>
+      <div class="dec-grid">
+        <div class="dec-card"><div class="t">С чего стартуем</div><p><b>2 письма:</b> Welcome и «Брошенная корзина» (самые прибыльные). Сервис на старт — <b>Unisender</b> (быстро и дёшево) или <b>RetailCRM</b>, если хотим сразу закрыть отсутствие CRM.</p></div>
+        <div class="dec-card"><div class="t">Первые 2 недели</div><p><b>Нед. 1:</b> выбрать сервис, связать с Tilda, собрать базу с согласием.<br><b>Нед. 2:</b> настроить 2 письма, поставить UTM-метки, запустить.</p></div>
+        <div class="dec-card"><div class="t">Что нужно от команды</div><p>1) кто отвечает за тексты/фото писем (основа уже готова);<br>2) кто настроит сервис (~1–2 дня);<br>3) кто отвечает на ответы клиентов.</p></div>
+        <div class="dec-card"><div class="t">Чего ждём</div><p><b>+250–500К ₽/мес</b> на режиме, окупаемость с первого месяца. Бюджет — только подписка сервиса (от нескольких тыс. ₽/мес).</p></div>
+      </div>
+      <div class="dec-ask">
+        <div class="q">Решение на встрече: стартуем? какой сервис? кто ответственный?</div>
+        <span class="o">☐ Да, стартуем</span>
+        <span class="o">☐ Сервис: ______</span>
+        <span class="o">☐ Ответственный: ______</span>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- PRIMER -->
 <section>
@@ -166,8 +245,25 @@ tr:last-child td{border-bottom:none}
   </div>
 </section>
 
-<!-- WHY / UPLIFT -->
+<!-- DATA-DRIVEN -->
 <section>
+  <div class="wrap">
+    <div class="sec-label">Почему это сработает именно у вас</div>
+    <div class="sec-title">Письма построены на ваших данных</div>
+    <div class="sec-intro">Это не «письма вообще» — каждое решение опирается на Яндекс.Метрику #108324634 и реальные продажи Puntús.</div>
+    <ul class="primer">
+      <li><span class="n">₽</span><div><b>Показываем то, что уже продаётся.</b> Топ по выручке: Разноцветное колье (612К), кольцо «Принцесса» (272К), «Мутант» (231К), Белый чокер (190К). В welcome и cross-sell — именно эти бестселлеры.</div></li>
+      <li><span class="n">🚚</span><div><b>Поднимаем чек до бесплатной доставки.</b> Средний чек ~19 500 ₽, бесплатная доставка от 30 000 ₽ — разрыв ~10К. В письмах мягко предлагаем «добрать» комплектом → растёт и чек, и конверсия.</div></li>
+      <li><span class="n">🎁</span><div><b>Мужчины покупают в 4 раза чаще (CR 5.82% против 1.54%).</b> Это дарители. Рекомендуем добавить цепочку «Подарок для неё» на сегмент мужчин перед 8 марта / Новым годом / 14 февраля.</div></li>
+      <li><span class="n">✓</span><div><b>Сертификаты продаются сами — 110 000 ₽ без рекламы.</b> Спрос доказан: добавляем подарочный сертификат в welcome и подарочные письма.</div></li>
+      <li><span class="n">+</span><div><b>Стикеры разбирают — 24 шт сами по себе.</b> Дешёвый допродажный аддон в корзину и после покупки (+950 ₽) — лёгкий рост среднего чека.</div></li>
+      <li><span class="n">📱</span><div><b>89% открывают с телефона</b> → все письма свёрстаны мобайл-первыми. Аудитория-ядро — женщины 25–34 (56%, лучшая конверсия) — под них тон и фото.</div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- UPLIFT -->
+<section id="uplift">
   <div class="wrap">
     <div class="sec-label">Зачем это нужно</div>
     <div class="sec-title">Ожидаемый прирост выручки и прибыли</div>
@@ -194,35 +290,18 @@ tr:last-child td{border-bottom:none}
     <div class="note-box">
       <strong>Честно про цифры:</strong> это оценки на основе данных дашборда (#108324634) и
       бенчмарков ниши, а не гарантия. Проценты — доля от текущей выручки (~1,9М ₽/мес). Суммы
-      не складываются «в лоб» по максимуму (часть эффекта пересекается), итог сводится к
-      +250–500К ₽/мес. Даже консервативный сценарий окупается с первого месяца.
+      не складываются «в лоб» по максимуму, итог сводится к +250–500К ₽/мес. Даже консервативный
+      сценарий окупается с первого месяца.
     </div>
   </div>
 </section>
 
-<!-- DATA-DRIVEN -->
-<section>
-  <div class="wrap">
-    <div class="sec-label">Почему это сработает именно у вас</div>
-    <div class="sec-title">Письма построены на ваших данных</div>
-    <div class="sec-intro">Это не «письма вообще» — каждое решение опирается на Яндекс.Метрику #108324634 и реальные продажи Puntús. Поэтому мы уверены в эффективности.</div>
-    <ul class="primer">
-      <li><span class="n">₽</span><div><b>Показываем то, что уже продаётся.</b> Топ по выручке: Разноцветное колье (612К), кольцо «Принцесса» (272К), «Мутант» (231К), Белый чокер (190К). В welcome и cross-sell — именно эти бестселлеры, а не случайные товары.</div></li>
-      <li><span class="n">🚚</span><div><b>Поднимаем чек до бесплатной доставки.</b> Средний чек ~19 500 ₽, бесплатная доставка от 30 000 ₽ — разрыв ~10К. В письмах о корзине и новинках мягко предлагаем «добрать» комплектом → растёт и чек, и конверсия.</div></li>
-      <li><span class="n">🎁</span><div><b>Мужчины покупают в 4 раза чаще (CR 5.82% против 1.54% у женщин).</b> Это дарители. Рекомендуем добавить цепочку «Подарок для неё» на сегмент мужчин перед 8 марта / Новым годом / 14 февраля.</div></li>
-      <li><span class="n">✓</span><div><b>Сертификаты продаются сами — 110 000 ₽ без всякой рекламы.</b> Значит спрос доказан: добавляем подарочный сертификат в welcome и подарочные письма.</div></li>
-      <li><span class="n">+</span><div><b>Стикеры разбирают — 24 шт сами по себе.</b> Дешёвый допродажный аддон в корзину и после покупки (+950 ₽) — лёгкий рост среднего чека.</div></li>
-      <li><span class="n">📱</span><div><b>89% открывают с телефона</b> → все письма свёрстаны мобайл-первыми (одна колонка, крупная кнопка). Аудитория-ядро — женщины 25–34 (56%, лучшая конверсия) — под них тон и фото.</div></li>
-    </ul>
-  </div>
-</section>
-
 <!-- MOCKUPS -->
-<section>
+<section id="mockups">
   <div class="wrap">
     <div class="sec-label">Готовые письма</div>
     <div class="sec-title">5 писем с фото бренда — можно отправлять</div>
-    <div class="sec-intro">Тексты дописаны до конца, с фото из каталога Puntús, приветствием, подписью и обязательной отпиской. Под каждым письмом — плашка «почему так составлено» и сколько оно принесёт. Промокоды (WELCOME, STORY) — примеры, замените на свои.</div>
+    <div class="sec-intro">Тексты дописаны до конца, с фото из каталога Puntús, приветствием, подписью и обязательной отпиской. Под каждым письмом — «почему так составлено» и сколько оно принесёт. Промокоды (WELCOME, STORY) — примеры, замените на свои.</div>
 
     <div class="note-box" style="margin-bottom:24px">
       <strong>Голос Puntús</strong> (взят с сайта): тёплый, поэтичный, на «вы». Украшения — «сокровища»
@@ -293,7 +372,7 @@ tr:last-child td{border-bottom:none}
           <div class="sign">С теплом, команда Puntús</div>
         </div>
         <div class="mail-foot">Вы получили это письмо как покупатель Puntús. <a href="#">Отписаться</a> · @puntus.me · Москва</div>
-        <div class="why"><b>Почему так:</b> письмо без продажи — забота. Снижает тревогу после покупки и возвраты, повышает любовь к бренду и готовит к следующей покупке. Полезный контент = доверие.</div>
+        <div class="why"><b>Почему так:</b> письмо без продажи — забота. Снижает тревогу после покупки и возвраты, повышает любовь к бренду и готовит к следующей покупке.</div>
         <div class="mval">+30–60 000 ₽/мес <span>· ~+2–3% к выручке</span></div>
       </div>
 
@@ -314,7 +393,7 @@ tr:last-child td{border-bottom:none}
           <div class="sign">С теплом, команда Puntús</div>
         </div>
         <div class="mail-foot">Вы получили это письмо как покупатель Puntús. <a href="#">Отписаться</a> · @puntus.me · Москва</div>
-        <div class="why"><b>Почему так:</b> мягкая допродажа — предлагает дополнить, а не «купи ещё». Отправляется, когда первая радость улеглась (через 3 недели). Поднимает повторные заказы и средний чек.</div>
+        <div class="why"><b>Почему так:</b> мягкая допродажа — предлагает дополнить, а не «купи ещё». Отправляется, когда первая радость улеглась. Поднимает повторные заказы и средний чек.</div>
         <div class="mval">+60–120 000 ₽/мес <span>· ~+3–6% к выручке</span></div>
       </div>
 
@@ -336,7 +415,7 @@ tr:last-child td{border-bottom:none}
           <div class="sign">С теплом, команда Puntús</div>
         </div>
         <div class="mail-foot">Вы получили это письмо как покупатель Puntús. <a href="#">Отписаться</a> · @puntus.me · Москва</div>
-        <div class="why"><b>Почему так:</b> собирает отзывы (соц.доказательство для новых покупателей) и фото клиентов (бесплатная реклама). Стимул −15% возвращает к покупке. Зовём отметить аккаунт — так бренд уже общается в соцсетях.</div>
+        <div class="why"><b>Почему так:</b> собирает отзывы (соц.доказательство) и фото клиентов (бесплатная реклама). Стимул −15% возвращает к покупке. Зовём отметить аккаунт — так бренд уже общается в соцсетях.</div>
         <div class="mval">косвенно <span>· рост конверсии + бесплатный контент</span></div>
       </div>
 
@@ -379,7 +458,7 @@ tr:last-child td{border-bottom:none}
       <li><b>Выбрать сервис</b> рассылок под РФ (см. таблицу ниже) и зарегистрироваться.</li>
       <li><b>Связать с Tilda:</b> форма подписки → передаёт контакты в сервис; заказы → через интеграцию/вебхук, чтобы триггерить письма о покупке и корзине.</li>
       <li><b>Собрать базу легально:</b> double opt-in и согласие на рассылку (152-ФЗ). Импортировать существующих покупателей с их согласием.</li>
-      <li><b>Настроить 6 цепочек:</b> welcome, брошенная корзина, post-purchase (д7/д21/д45), отзыв/UGC, реактивация.</li>
+      <li><b>Настроить цепочки:</b> старт — welcome и брошенная корзина; далее post-purchase, отзыв/UGC, реактивация.</li>
       <li><b>UTM-метки на все ссылки</b> (<code>utm_source=email</code>) — чтобы Яндекс.Метрика видела выручку с писем.</li>
       <li><b>Замерять</b> выручку с email в Метрике и дорабатывать темы/тайминги по цифрам.</li>
     </ol>
@@ -387,86 +466,28 @@ tr:last-child td{border-bottom:none}
 </section>
 
 <!-- RF TOOLS -->
-<section>
+<section id="tools">
   <div class="wrap">
     <div class="sec-label">Чем делать в России</div>
     <div class="sec-title">Сервисы рассылок — выбор с учётом, что CRM нет</div>
-    <div class="sec-intro">⚠️ Важно: у магазина <b>сейчас нет CRM</b> (базы клиентов). Поэтому сервис желательно с <b>встроенной базой клиентов (CDP)</b> — чтобы он сам хранил профили покупателей, заказы и историю, а не только слал письма. В таблице это первая колонка. Klaviyo / Mailchimp функционально сильны, но оплата из РФ затруднена — как основной инструмент не рекомендуются.</div>
+    <div class="sec-intro">⚠️ У магазина <b>сейчас нет CRM</b> (базы клиентов). Поэтому сервис желательно с <b>встроенной базой клиентов (CDP)</b> — чтобы он сам хранил профили, заказы и историю. Klaviyo / Mailchimp сильны, но оплата из РФ затруднена — как основной инструмент не рекомендуются.</div>
     <div class="tscroll">
     <table>
       <tr><th>Сервис</th><th>База клиентов (CDP)</th><th>Каналы</th><th>Автомат.</th><th>Товарные реко</th><th>Цена</th><th>Для кого</th></tr>
-      <tr>
-        <td><b>Unisender</b><span class="rec">старт</span></td>
-        <td class="mid">базовая</td>
-        <td>Email, SMS, Viber, Telegram-бот</td>
-        <td>средняя</td>
-        <td class="no">нет</td>
-        <td class="val">бюджет</td>
-        <td>Быстрый старт, малый бюджет; нативная интеграция с Tilda</td>
-      </tr>
-      <tr>
-        <td><b>RetailCRM</b><span class="rec">нет CRM → сюда</span></td>
-        <td class="yes">да (это CRM)</td>
-        <td>Email, SMS, WhatsApp</td>
-        <td>высокая (на основе заказов)</td>
-        <td class="yes">да</td>
-        <td class="val">от ~9 360 ₽/мес</td>
-        <td>Закрывает и CRM, и письма: заказы + база + триггеры в одном</td>
-      </tr>
-      <tr>
-        <td><b>Sendsay</b><span class="rec">баланс</span></td>
-        <td class="yes">да (единый профиль)</td>
-        <td>Email, SMS, push, Telegram, Viber, VK</td>
-        <td>средняя</td>
-        <td class="yes">да</td>
-        <td class="val">средний</td>
-        <td>Малому/среднему бизнесу, начинающим в CRM — омниканал</td>
-      </tr>
-      <tr>
-        <td><b>DashaMail</b></td>
-        <td class="yes">да (CDP-модуль)</td>
-        <td>Email, web-push</td>
-        <td>средняя</td>
-        <td class="yes">да</td>
-        <td class="val">средний</td>
-        <td>E-commerce среднего размера, недорого на старте</td>
-      </tr>
-      <tr>
-        <td><b>enKod</b><span class="rec">рост</span></td>
-        <td class="yes">да (CDP)</td>
-        <td>Email, SMS, push, WhatsApp, web</td>
-        <td>высокая</td>
-        <td class="yes">да (персон. подборки)</td>
-        <td class="val">от ~18 000 ₽/мес</td>
-        <td>E-commerce с упором на персонализацию</td>
-      </tr>
-      <tr>
-        <td><b>Carrot quest</b></td>
-        <td class="yes">да</td>
-        <td>Email, push, мессенджеры, онлайн-чат</td>
-        <td>средняя</td>
-        <td class="no">нет</td>
-        <td class="val">enterprise</td>
-        <td>Если нужен ещё чат и поп-апы на сайте</td>
-      </tr>
-      <tr>
-        <td><b>Mindbox</b></td>
-        <td class="yes">да (лучший CDP)</td>
-        <td>Email, SMS, push, чат-боты</td>
-        <td>очень высокая</td>
-        <td class="yes">да (ML)</td>
-        <td class="val">≈ 91 000 ₽/мес</td>
-        <td>Крупный бизнес; на вырост — дорого для старта</td>
-      </tr>
+      <tr><td><b>Unisender</b><span class="recb">старт</span></td><td class="mid">базовая</td><td>Email, SMS, Viber, Telegram-бот</td><td>средняя</td><td class="no">нет</td><td class="val">бюджет</td><td>Быстрый старт; нативная интеграция с Tilda</td></tr>
+      <tr><td><b>RetailCRM</b><span class="recb">нет CRM → сюда</span></td><td class="yes">да (это CRM)</td><td>Email, SMS, WhatsApp</td><td>высокая (на заказах)</td><td class="yes">да</td><td class="val">от ~9 360 ₽/мес</td><td>Закрывает и CRM, и письма: заказы + база + триггеры</td></tr>
+      <tr><td><b>Sendsay</b><span class="recb">баланс</span></td><td class="yes">да</td><td>Email, SMS, push, Telegram, Viber, VK</td><td>средняя</td><td class="yes">да</td><td class="val">средний</td><td>Малому/среднему бизнесу, начинающим в CRM</td></tr>
+      <tr><td><b>DashaMail</b></td><td class="yes">да (CDP)</td><td>Email, web-push</td><td>средняя</td><td class="yes">да</td><td class="val">средний</td><td>E-commerce среднего размера, недорого на старте</td></tr>
+      <tr><td><b>enKod</b><span class="recb">рост</span></td><td class="yes">да (CDP)</td><td>Email, SMS, push, WhatsApp, web</td><td>высокая</td><td class="yes">да</td><td class="val">от ~18 000 ₽/мес</td><td>E-commerce с упором на персонализацию</td></tr>
+      <tr><td><b>Carrot quest</b></td><td class="yes">да</td><td>Email, push, мессенджеры, чат</td><td>средняя</td><td class="no">нет</td><td class="val">enterprise</td><td>Если нужен ещё чат и поп-апы на сайте</td></tr>
+      <tr><td><b>Mindbox</b></td><td class="yes">да (лучший CDP)</td><td>Email, SMS, push, чат-боты</td><td>очень высокая</td><td class="yes">да (ML)</td><td class="val">≈ 91 000 ₽/мес</td><td>Крупный бизнес; на вырост — дорого для старта</td></tr>
     </table>
     </div>
     <div class="note-box">
-      <strong>Рекомендация с учётом, что CRM нет:</strong> поскольку базы клиентов сейчас нет вообще,
-      лучше сразу взять сервис, который её даёт. Два разумных пути:<br>
+      <strong>Рекомендация с учётом, что CRM нет:</strong> базы клиентов сейчас нет вообще, поэтому лучше сразу взять сервис, который её даёт. Два пути:<br>
       • <b>Минимальный бюджет, только письма:</b> <b>Unisender</b> или <b>DashaMail</b> — дёшево, есть база, запуск за пару дней.<br>
-      • <b>Сразу «база + заказы + письма» в одном:</b> <b>RetailCRM</b> (закрывает отсутствие CRM целиком) или <b>Sendsay</b> (CDP + омниканал, мягкий старт).<br>
-      <b>enKod / Mindbox</b> — мощнее и с рекомендациями, но дороже и сложнее — на этап роста.
-      Цены зависят от размера базы: на старте с маленьким списком выходит заметно дешевле указанных «от».
+      • <b>«База + заказы + письма» в одном:</b> <b>RetailCRM</b> (закрывает отсутствие CRM целиком) или <b>Sendsay</b>.<br>
+      <b>enKod / Mindbox</b> — мощнее и с рекомендациями, но дороже — на этап роста. Цены зависят от размера базы: на старте дешевле указанных «от».
     </div>
     <div class="src">Источники сравнения (2025–2026): emailmatrix.ru, onreport.ru, crmlove.ru, dashamail.ru. Интеграция с Tilda: у Unisender — нативная; у остальных — через вебхук/API или коннекторы (Albato, ApiX-Drive).</div>
   </div>

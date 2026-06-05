@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>puntús · SEO — исследование и план</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#F6F3E8; --cream2:#efe9da; --ink:#222; --ink2:#393939; --gray:#6b6b6b;
+  --coral:#FF8562; --coral-d:#e9663f; --terra:#83423E; --line:#e3ded0; --white:#fff;
+  --disp:'Fraunces',Georgia,serif; --ui:'Manrope','Helvetica Neue',Arial,sans-serif; --serif:Georgia,'Times New Roman',serif;
+}
+body{font-family:var(--serif);background:var(--cream);color:var(--ink);font-size:15px;line-height:1.7;-webkit-text-size-adjust:100%}
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+a{color:inherit}
+
+/* GATE */
+#gate{position:fixed;inset:0;background:var(--cream);z-index:10000;display:flex;align-items:center;justify-content:center;padding:20px}
+#gate.hidden{display:none}
+.gate-card{background:var(--white);border:1px solid var(--line);border-top:5px solid var(--coral);border-radius:18px;box-shadow:0 14px 50px rgba(131,66,62,.14);padding:40px 36px;width:100%;max-width:380px;text-align:center}
+.gate-logo{font-family:var(--disp);font-size:30px;color:var(--ink);letter-spacing:-.5px}
+.gate-logo span{display:block;font-family:var(--ui);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--coral-d);margin-top:6px}
+.gate-sub{font-size:13px;color:var(--gray);margin:14px 0 18px}
+.gate-input{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 16px;font-size:16px;text-align:center;letter-spacing:.2em;outline:none;background:var(--cream);color:var(--ink);font-family:var(--serif)}
+.gate-input:focus{border-color:var(--coral)}
+.gate-btn{width:100%;margin-top:10px;background:var(--coral);color:#fff;border:none;border-radius:100px;padding:13px;font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.gate-btn:hover{background:var(--coral-d)}
+.gate-err{margin-top:10px;font-size:12px;color:#c0392b;min-height:16px}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:900;background:rgba(246,243,232,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1000px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.nav-logo{font-family:var(--disp);font-size:19px;letter-spacing:-.3px;color:var(--ink)}
+.nav-logo b{color:var(--coral-d)}
+.nav-links{display:flex;gap:22px}
+.nav-links a{font-family:var(--ui);font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink2);text-decoration:none;transition:color .15s}
+.nav-links a:hover{color:var(--coral-d)}
+
+/* HERO */
+.hero{border-top:6px solid var(--coral)}
+.hero-in{max-width:1000px;margin:0 auto;padding:54px 24px 46px;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.brand{font-family:var(--ui);font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--coral-d);margin-bottom:18px}
+.hero h1{font-family:var(--disp);font-size:46px;font-weight:400;letter-spacing:-1px;line-height:1.08;margin-bottom:18px;color:var(--ink)}
+.hero h1 em{font-style:italic;color:var(--coral-d)}
+.hero p{font-size:15.5px;color:var(--ink2);max-width:520px}
+.hero .meta{margin-top:24px;display:flex;gap:9px;flex-wrap:wrap}
+.chip{background:var(--white);border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-family:var(--ui);font-size:11px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink2)}
+.hero-img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:18px;box-shadow:0 18px 50px rgba(131,66,62,.16)}
+
+section{padding:46px 0 6px}
+.sec-label{font-family:var(--ui);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--coral-d);margin-bottom:8px;font-weight:600}
+.sec-title{font-family:var(--disp);font-size:30px;font-weight:400;letter-spacing:-.5px;margin-bottom:10px;color:var(--ink)}
+.sec-intro{font-size:15px;color:var(--ink2);max-width:760px;margin-bottom:24px}
+
+/* DECISION */
+.decision{background:var(--ink);color:var(--cream);border-radius:20px;padding:34px 34px 30px;margin-top:6px}
+.decision .sec-label{color:var(--coral)}
+.decision h2{font-family:var(--disp);font-size:27px;font-weight:400;color:#fff;margin-bottom:8px}
+.dec-lead{font-size:15px;color:rgba(246,243,232,.85);max-width:700px;margin-bottom:22px}
+.dec-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px}
+.dec-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px 18px}
+.dec-card .t{font-family:var(--ui);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--coral);margin-bottom:8px;font-weight:600}
+.dec-card p{font-size:13.5px;color:rgba(246,243,232,.9);line-height:1.55}
+.dec-card b{color:#fff}
+.dec-ask{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:var(--coral);border-radius:14px;padding:16px 20px}
+.dec-ask .q{font-family:var(--disp);font-size:18px;color:#fff;font-style:italic;flex:1;min-width:240px}
+.dec-ask .o{font-family:var(--ui);font-size:11.5px;color:#fff;background:rgba(0,0,0,.18);border-radius:100px;padding:6px 13px;font-weight:600}
+
+/* KPIS */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+.kpi{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:20px 18px;transition:transform .2s,box-shadow .2s}
+.kpi:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(131,66,62,.08)}
+.kpi .num{font-family:var(--disp);font-size:30px;color:var(--terra);line-height:1;letter-spacing:-.5px}
+.kpi .num.coral{color:var(--coral-d)}
+.kpi .lbl{font-family:var(--ui);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--gray);margin-top:8px;font-weight:600}
+.kpi .sub{font-size:13px;color:var(--ink2);margin-top:6px}
+
+/* LISTS */
+.primer{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:6px 8px}
+.primer li{list-style:none;display:flex;gap:13px;padding:13px 14px;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink2)}
+.primer li:last-child{border-bottom:none}
+.primer .n{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--coral);color:#fff;font-family:var(--ui);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.primer b{color:var(--ink)}
+
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:14px}
+table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+th{font-family:var(--ui);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--gray);text-align:left;padding:12px 14px;background:var(--cream2);border-bottom:1px solid var(--line);font-weight:700}
+td{padding:12px 14px;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--ink2);vertical-align:top}
+tr:last-child td{border-bottom:none}
+.val{font-family:var(--disp);color:var(--terra);font-size:16px;white-space:nowrap;text-align:right}
+.tag{font-family:var(--ui);font-size:10px;font-weight:600;letter-spacing:.03em;color:var(--coral-d);background:#fbeee7;border-radius:100px;padding:2px 8px;white-space:nowrap}
+.note-box{background:#fbf7ec;border-left:3px solid var(--coral);border-radius:0 12px 12px 0;padding:15px 18px;font-size:13.5px;color:var(--ink2);margin-top:18px}
+.note-box strong{color:var(--terra)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:20px 22px}
+.card h4{font-family:var(--disp);font-size:18px;font-weight:500;color:var(--ink);margin-bottom:10px}
+.card ul{list-style:none}
+.card li{font-size:13.5px;color:var(--ink2);padding:5px 0 5px 18px;position:relative;line-height:1.5}
+.card li::before{content:'—';position:absolute;left:0;color:var(--coral)}
+
+/* ARTICLES */
+.arts{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.art{background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 6px 24px rgba(131,66,62,.06);transition:transform .2s,box-shadow .2s}
+.art:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(131,66,62,.13)}
+.art-h{padding:16px 20px 12px;border-bottom:1px solid #f1ece0}
+.art-h .q{font-family:var(--ui);font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:var(--gray);margin-bottom:6px}
+.art-h .q b{color:var(--coral-d)}
+.art-h h4{font-family:var(--disp);font-size:18px;font-weight:500;color:var(--ink);line-height:1.25}
+.art-b{padding:14px 20px 18px}
+.art-b .intro{font-style:italic;color:var(--terra);font-size:13.5px;line-height:1.6;margin-bottom:10px}
+.art-b p{font-size:13px;color:var(--ink2);line-height:1.55}
+
+/* STEPS */
+.steps{counter-reset:s;list-style:none}
+.steps li{position:relative;padding:10px 0 10px 44px;border-bottom:1px solid var(--line);font-size:14.5px;color:var(--ink2)}
+.steps li:last-child{border-bottom:none}
+.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:9px;width:28px;height:28px;background:var(--coral);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--ui);font-size:13px;font-weight:700}
+.steps li b{color:var(--ink)}
+
+.src{font-size:11px;color:var(--gray);margin-top:10px}
+.foot{text-align:center;padding:44px 24px;color:#a99f8c;font-family:var(--ui);font-size:11px;letter-spacing:.04em}
+
+@media(max-width:820px){
+  .hero-in{grid-template-columns:1fr;gap:26px}
+  .hero-img{aspect-ratio:16/10;max-height:340px}
+  .hero h1{font-size:36px}
+  .nav-links{display:none}
+}
+@media(max-width:760px){
+  .wrap{padding:0 16px}
+  .kpis{grid-template-columns:1fr 1fr}
+  .arts,.two,.dec-grid{grid-template-columns:1fr}
+  .decision{padding:26px 22px}
+  .tscroll table{min-width:520px}
+}
+@media(max-width:460px){
+  body{font-size:14px}
+  .kpis{grid-template-columns:1fr}
+  .sec-title{font-size:24px}.hero h1{font-size:30px}
+}
+</style>
+</head>
+<body>
+
+<!-- GATE -->
+<div id="gate">
+  <div class="gate-card">
+    <div class="gate-logo">puntús<span>SEO program</span></div>
+    <div class="gate-sub">Введите пароль для доступа</div>
+    <input class="gate-input" id="gateInput" type="password" placeholder="••••"
+      onkeydown="if(event.key==='Enter')checkPass()">
+    <button class="gate-btn" onclick="checkPass()">Войти</button>
+    <div class="gate-err" id="gateErr"></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-in">
+    <div class="nav-logo">punt<b>ú</b>s · seo</div>
+    <div class="nav-links">
+      <a href="#decision">План</a>
+      <a href="#research">Исследование</a>
+      <a href="#semantics">Запросы</a>
+      <a href="#articles">Статьи</a>
+      <a href="#tech">Техничка</a>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-in">
+    <div>
+      <div class="brand">puntús · seo program</div>
+      <h1>Чтобы вас <em>находили</em> в поиске</h1>
+      <p>Презентация для команды. Поиск уже приносит 40% дохода при 22% трафика — и это без вложений в рекламу. SEO — самый «накопительный» канал: один раз вложились, трафик растёт месяцами. Внутри: что предлагаем сделать, результаты исследования и готовые статьи.</p>
+      <div class="meta">
+        <span class="chip">Поиск: CR 2.25% — 2× среднего</span>
+        <span class="chip">40% дохода при 22% трафика</span>
+        <span class="chip">Реклама = 0 · потенциал +2.2М ₽</span>
+      </div>
+    </div>
+    <img class="hero-img" src="https://optim.tildacdn.com/stor3635-3035-4563-b864-316161373032/-/cover/830x830/center/center/-/format/webp/36310066.jpg.webp" alt="Украшения Puntús">
+  </div>
+</div>
+
+<!-- DECISION -->
+<section id="decision">
+  <div class="wrap">
+    <div class="decision">
+      <div class="sec-label">Что предлагаем утвердить</div>
+      <h2>Запустить SEO-движок — без рекламного бюджета</h2>
+      <p class="dec-lead">SEO — это «накопительный» актив: в отличие от рекламы, трафик не исчезает, когда заканчиваются деньги, а растёт со временем. Стартуем малым: техфиксы + первые статьи + топ-карточки, дальше масштабируем.</p>
+      <div class="dec-grid">
+        <div class="dec-card"><div class="t">С чего стартуем</div><p>1) Техбаза на Tilda (редиректы, Вебмастер + Google Search Console, YML-фид); 2) <b>2 статьи</b> под подарочные запросы; 3) переписать карточки <b>топ-товаров</b> с гидом по размерам.</p></div>
+        <div class="dec-card"><div class="t">Первые 2 недели</div><p><b>Нед. 1:</b> техфиксы + подключить Вебмастер/GSC + докрутить семантику.<br><b>Нед. 2:</b> опубликовать 2 статьи, оптимизировать карточки топ-5 товаров.</p></div>
+        <div class="dec-card"><div class="t">Что нужно от команды</div><p>1) кто пишет статьи (черновики уже готовы);<br>2) кто правит Tilda (техничка, ~1–2 дня);<br>3) кто следит за позициями в Вебмастере.</p></div>
+        <div class="dec-card"><div class="t">Чего ждём</div><p><b>Потенциал +2.2М ₽</b> (поиск уже даёт 40% дохода). Эффект накопительный — первые результаты через 60–90 дней, дальше растёт.</p></div>
+      </div>
+      <div class="dec-ask">
+        <div class="q">Решение на встрече: стартуем? кто пишет статьи? кто правит Tilda?</div>
+        <span class="o">☐ Да, стартуем</span>
+        <span class="o">☐ Автор: ______</span>
+        <span class="o">☐ Tilda: ______</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPPORTUNITY -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">Зачем это нужно</div>
+    <div class="sec-title">Поиск — ваш самый эффективный канал</div>
+    <div class="sec-intro">Из всех источников трафика поиск конвертит лучше всех относительно объёма: он приносит 40% дохода, занимая лишь 22% трафика. Это значит — люди из поиска приходят с готовым намерением купить. Усилить этот канал дешевле и надёжнее, чем покупать рекламу.</div>
+    <div class="kpis">
+      <div class="kpi"><div class="num coral">2.25%</div><div class="lbl">конверсия из поиска</div><div class="sub">вдвое выше среднего (1.11%)</div></div>
+      <div class="kpi"><div class="num">40%</div><div class="lbl">дохода</div><div class="sub">при 22% трафика</div></div>
+      <div class="kpi"><div class="num">+2.2М ₽</div><div class="lbl">потенциал</div><div class="sub">накопительно, без рекламы</div></div>
+      <div class="kpi"><div class="num">0 ₽</div><div class="lbl">за клик</div><div class="sub">органика не списывает бюджет</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="wrap">
+    <div class="sec-label">Результат исследования</div>
+    <div class="sec-title">Что мы выяснили</div>
+    <div class="sec-intro">Глубокое исследование: 5 направлений, 22 источника, 107 фактов → проверено состязательно: <b>24 подтверждено, 1 опровергнут</b>. Главные выводы для Puntús:</div>
+    <ul class="primer">
+      <li><span class="n">1</span><div><b>Ставка на узкие запросы, а не общие.</b> «Серебряное кольцо» (64К/мес) звучит заманчиво, но засорено турфирмой «Серебряное кольцо» и зашкаливает по конкуренции. Узкие запросы («серебряное кольцо с жемчугом», «колье с барочным жемчугом») дают «горячий» готовый к покупке трафик.</div></li>
+      <li><span class="n">2</span><div><b>Разделять намерения по страницам.</b> «Купить» → категории и карточки; «что подарить / как выбрать» → статьи блога. Смешивать на одной странице нельзя — поисковик понижает обе.</div></li>
+      <li><span class="n">3</span><div><b>Карточка товара решает конверсию.</b> Уникальные описания (не шаблон) + понятный <b>гид по размерам</b> (его отсутствие — главная причина ухода к конкурентам) + характеристики жемчуга/пробы + сертификаты.</div></li>
+      <li><span class="n">4</span><div><b>Блог под подарки приводит трафик.</b> Люди часто ищут не изделие, а «что подарить». Сезонные пики — Новый год и 8 марта. Готовить статьи заранее.</div></li>
+      <li><span class="n">✗</span><div><b>Развеяли миф.</b> «Цена с разметкой обязательна для топа» — не подтвердилось: цена влияет на сниппет и кликабельность, но не на ранжирование напрямую.</div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- SEMANTICS -->
+<section id="semantics">
+  <div class="wrap">
+    <div class="sec-label">Что реально ищут</div>
+    <div class="sec-title">Запросы ниши — данные Яндекс Wordstat</div>
+    <div class="sec-intro">Собрано вживую, регион Россия, показов в месяц. Зелёным — приоритетные точки роста под бренд.</div>
+    <div class="tscroll">
+    <table>
+      <tr><th>Запрос</th><th style="text-align:right">Показов/мес</th><th>Куда</th></tr>
+      <tr><td><b>что подарить девушке</b></td><td class="val">49 944</td><td><span class="tag">статья-магнит</span></td></tr>
+      <tr><td>серебряное кольцо</td><td class="val">64 908</td><td>⚠️ шумный (турфирма)</td></tr>
+      <tr><td>украшения ручной работы</td><td class="val">6 267</td><td><span class="tag">позиционирование</span></td></tr>
+      <tr><td>кольцо с жемчугом</td><td class="val">4 910</td><td><span class="tag">ядро бренда</span></td></tr>
+      <tr><td>колье с жемчугом</td><td class="val">2 081</td><td><span class="tag">флагман</span></td></tr>
+      <tr><td>&nbsp;&nbsp;↳ колье с барочным жемчугом</td><td class="val">77</td><td>лонг-тейл, низкая конкуренция</td></tr>
+      <tr><td>украшение в подарок</td><td class="val">2 071</td><td>подарочный</td></tr>
+      <tr><td>что подарить на 8 марта</td><td class="val">1 788</td><td>⏳ сезонный — готовить заранее</td></tr>
+    </table>
+    </div>
+    <div class="note-box"><strong>Вывод:</strong> головы («серебряное кольцо») — для общей категории, но трафик берём на <b>связках «серебро + жемчуг + тип + форма»</b> и подарочных статьях. Таких узких запросов десятки — собрать пачку точных посадочных страниц.</div>
+  </div>
+</section>
+
+<!-- ARTICLES -->
+<section id="articles">
+  <div class="wrap">
+    <div class="sec-label">Готовые черновики</div>
+    <div class="sec-title">5 статей в голосе бренда</div>
+    <div class="sec-intro">Под собранные запросы. У каждой — готовое вступление в голосе Puntús, структура, meta и внутренние ссылки. Осталось дописать разделы и опубликовать в блоге Tilda.</div>
+    <div class="arts">
+      <div class="art">
+        <div class="art-h"><div class="q">запрос: <b>что подарить девушке · 49 944/мес</b></div><h4>Что подарить девушке: идеи, которые она будет носить</h4></div>
+        <div class="art-b"><p class="intro">«Самый тёплый подарок — тот, что остаётся с человеком надолго…»</p><p>Гид по украшениям-подаркам, который мягко ведёт в каталог. Закрывает огромный спрос.</p></div>
+      </div>
+      <div class="art">
+        <div class="art-h"><div class="q">запрос: <b>что подарить на 8 марта · 1 788/мес</b></div><h4>Что подарить на 8 марта: украшения вместо цветов</h4></div>
+        <div class="art-b"><p class="intro">«Цветы вянут к выходным, а сокровище остаётся…»</p><p>Сезонная статья, публиковать к началу февраля. Варианты для девушки / мамы / подруги.</p></div>
+      </div>
+      <div class="art">
+        <div class="art-h"><div class="q">запрос: <b>украшения ручной работы · 6 267/мес</b></div><h4>Живое серебро: чем ручная работа отличается от заводской</h4></div>
+        <div class="art-b"><p class="intro">«В мире, где всё отполировано и одинаково, мы оставляем следы руки мастера…»</p><p>Брендовая статья о философии Puntús — повышает доверие (важный фактор Яндекса).</p></div>
+      </div>
+      <div class="art">
+        <div class="art-h"><div class="q">запрос: <b>кольцо с жемчугом · 4 910/мес</b></div><h4>Как выбрать кольцо с жемчугом и не ошибиться</h4></div>
+        <div class="art-b"><p class="intro">«Жемчуг — живой камень: у каждого свой характер…»</p><p>Виды жемчуга, размер (ссылка на гид), уход. Ведёт в категорию «Жемчуг».</p></div>
+      </div>
+      <div class="art">
+        <div class="art-h"><div class="q">запрос: <b>уход за серебром · информационный</b></div><h4>Как ухаживать за серебром, чтобы оно не темнело</h4></div>
+        <div class="art-b"><p class="intro">«Серебро темнеет — и это нормально: так металл живёт…»</p><p>Полезная статья (низкая конкуренция), собрана из текста страницы ухода. Доверие + трафик.</p></div>
+      </div>
+      <div class="art" style="display:flex;align-items:center;justify-content:center;background:#fbf7ec">
+        <div class="art-b" style="text-align:center;padding:24px"><h4 style="color:var(--terra)">+ ещё пачка под лонг-тейл</h4><p>«серебряное кольцо с жемчугом», «колье из серебра с жемчугом», «авторские украшения» — узкие посадочные с низкой конкуренцией.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH -->
+<section id="tech">
+  <div class="wrap">
+    <div class="sec-label">Техническая часть</div>
+    <div class="sec-title">SEO на Tilda — что можно и как</div>
+    <div class="sec-intro">Хорошая новость: Tilda почти всё умеет из коробки. Ниже — что уже работает и что нужно донастроить руками.</div>
+    <div class="two">
+      <div class="card">
+        <h4>✅ Есть из коробки</h4>
+        <ul>
+          <li>robots.txt и sitemap.xml — генерируются автоматически</li>
+          <li>Уникальные title / description на каждую страницу</li>
+          <li>Авто-canonical при подключении домена</li>
+          <li><b>Встроенные редиректы www / https + 301</b> — это и закрывает потерю трафика с www</li>
+          <li>Schema.org-микроразметка на карточках товаров</li>
+          <li>Интеграция с Яндекс.Вебмастер и Google Search Console</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>🔧 Донастроить руками</h4>
+        <ul>
+          <li>JSON-LD (микроразметка Article / FAQ) для статей блога</li>
+          <li>YML-фид из каталога → «Поиск по товарам в Яндексе»</li>
+          <li>Уникальные тексты карточек + гид по размерам</li>
+          <li>Внутренние ссылки из статей на категории и карточки</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="two" style="margin-top:16px">
+      <div class="card">
+        <h4>🆚 Яндекс vs Google</h4>
+        <ul>
+          <li><b>Яндекс</b> (доминирует в РФ): поведенческие факторы (время на сайте, глубина, возвраты) + коммерческие (ассортимент, доверие, сервис, отзывы)</li>
+          <li><b>Google:</b> ссылки и экспертность (E-E-A-T)</li>
+          <li>⚠️ Поведенческие факторы нельзя накручивать — Яндекс пессимизирует</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>⚡ Скорость сайта (замер 05.06)</h4>
+        <ul>
+          <li><b>Реальные юзеры (мобайл): Core Web Vitals — ПРОЙДЕНО ✅</b> — для Google не проблема</li>
+          <li>Lighthouse-лаб: Performance 59 (типично для Tilda с фото)</li>
+          <li>SEO 92 ✅ · Accessibility 74 (есть что подтянуть)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAN STEPS -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">Как внедрять</div>
+    <div class="sec-title">Порядок работ</div>
+    <ol class="steps">
+      <li><b>Техбаза:</b> редирект www→puntus.me, подключить Вебмастер + Google Search Console, выгрузить YML-фид.</li>
+      <li><b>Семантика:</b> собрать ядро в Wordstat (узкие запросы), сгруппировать по интентам.</li>
+      <li><b>Карточки топ-товаров:</b> уникальные тексты + гид по размерам + характеристики.</li>
+      <li><b>Блог:</b> публиковать статьи (старт — «что подарить девушке» + сезонная), добавить JSON-LD.</li>
+      <li><b>Внутренняя перелинковка:</b> из статей — на категории и карточки.</li>
+      <li><b>Замер:</b> позиции и органический трафик в Вебмастере/GSC, выручка из поиска в Метрике — через 60 дней.</li>
+    </ol>
+    <div class="note-box"><strong>Честно про сроки:</strong> SEO — не быстрый канал. Первые результаты — через 60–90 дней, зато потом трафик растёт сам и не требует платы за клик. Это вложение в актив, а не в расход.</div>
+    <div class="src">Источники исследования: help-ru.tilda.cc, direct.yandex.ru, ashmanov.com, rush-analytics.ru, sape.ru, vipro.ru, vc.ru. Семантика — Яндекс Wordstat (Россия, май 2026).</div>
+  </div>
+</section>
+
+<div class="foot">
+  puntús · SEO — исследование и план · подготовлено 05.06.2026 · данные: Яндекс.Метрика #108324634, Wordstat, PageSpeed
+</div>
+
+<script>
+var PASS='2026';
+function checkPass(){
+  var v=document.getElementById('gateInput').value.trim();
+  if(v===PASS){
+    localStorage.setItem('puntus_seo_auth','1');
+    document.getElementById('gate').classList.add('hidden');
+    document.getElementById('gateErr').textContent='';
+  }else{
+    document.getElementById('gateErr').textContent='Неверный пароль — попробуйте ещё раз';
+    document.getElementById('gateInput').value='';
+    document.getElementById('gateInput').focus();
+  }
+}
+if(localStorage.getItem('puntus_seo_auth')==='1')document.getElementById('gate').classList.add('hidden');
+document.getElementById('gateInput').focus();
+</script>
+
+</body>
+</html>
